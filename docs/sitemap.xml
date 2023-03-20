@@ -2,110 +2,110 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://normalai.org/video/describing.html</loc>
-    <lastmod>2023-03-20T19:24:31.621Z</lastmod>
+    <lastmod>2023-03-20T19:32:24.419Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/video/index.html</loc>
-    <lastmod>2023-03-20T19:24:31.923Z</lastmod>
+    <lastmod>2023-03-20T19:32:24.707Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/video/classifying.html</loc>
-    <lastmod>2023-03-20T19:24:32.222Z</lastmod>
+    <lastmod>2023-03-20T19:32:24.999Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/intro/models.html</loc>
-    <lastmod>2023-03-20T19:24:33.178Z</lastmod>
+    <lastmod>2023-03-20T19:32:25.957Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/intro/index.html</loc>
-    <lastmod>2023-03-20T19:24:33.487Z</lastmod>
+    <lastmod>2023-03-20T19:32:26.260Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/intro/fine-tune-model.html</loc>
-    <lastmod>2023-03-20T19:24:34.198Z</lastmod>
+    <lastmod>2023-03-20T19:32:26.961Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/diy/research.html</loc>
-    <lastmod>2023-03-20T19:24:34.503Z</lastmod>
+    <lastmod>2023-03-20T19:32:27.233Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/diy/custom.html</loc>
-    <lastmod>2023-03-20T19:24:34.772Z</lastmod>
+    <lastmod>2023-03-20T19:32:27.505Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/diy/index.html</loc>
-    <lastmod>2023-03-20T19:24:35.176Z</lastmod>
+    <lastmod>2023-03-20T19:32:27.922Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/diy/image-classification.html</loc>
-    <lastmod>2023-03-20T19:24:35.449Z</lastmod>
+    <lastmod>2023-03-20T19:32:28.206Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/diy/text-classification.html</loc>
-    <lastmod>2023-03-20T19:24:35.722Z</lastmod>
+    <lastmod>2023-03-20T19:32:28.487Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/images/semantic-segmentation.html</loc>
-    <lastmod>2023-03-20T19:24:36.348Z</lastmod>
+    <lastmod>2023-03-20T19:32:29.115Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/images/index.html</loc>
-    <lastmod>2023-03-20T19:24:36.732Z</lastmod>
+    <lastmod>2023-03-20T19:32:29.499Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/images/image-classification.html</loc>
-    <lastmod>2023-03-20T19:24:37.042Z</lastmod>
+    <lastmod>2023-03-20T19:32:29.810Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/images/vqa.html</loc>
-    <lastmod>2023-03-20T19:24:37.355Z</lastmod>
+    <lastmod>2023-03-20T19:32:30.120Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/images/instance-segmentation.html</loc>
-    <lastmod>2023-03-20T19:24:37.693Z</lastmod>
+    <lastmod>2023-03-20T19:32:30.445Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/index.html</loc>
-    <lastmod>2023-03-20T19:24:38.045Z</lastmod>
+    <lastmod>2023-03-20T19:32:30.797Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/audio/index.html</loc>
-    <lastmod>2023-03-20T19:24:38.389Z</lastmod>
+    <lastmod>2023-03-20T19:32:31.140Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/audio/removing-noise.html</loc>
-    <lastmod>2023-03-20T19:24:38.662Z</lastmod>
+    <lastmod>2023-03-20T19:32:31.415Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/audio/transcription.html</loc>
-    <lastmod>2023-03-20T19:24:38.977Z</lastmod>
+    <lastmod>2023-03-20T19:32:31.742Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/existing-models.html</loc>
-    <lastmod>2023-03-20T19:24:39.635Z</lastmod>
+    <lastmod>2023-03-20T19:32:32.396Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/text/asking-documents-questions.html</loc>
-    <lastmod>2023-03-20T19:24:39.968Z</lastmod>
+    <lastmod>2023-03-20T19:32:32.727Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/text/document-similarity.html</loc>
-    <lastmod>2023-03-20T19:24:40.279Z</lastmod>
+    <lastmod>2023-03-20T19:32:33.038Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/text/named-entity-recognition.html</loc>
-    <lastmod>2023-03-20T19:24:40.603Z</lastmod>
+    <lastmod>2023-03-20T19:32:33.347Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/text/index.html</loc>
-    <lastmod>2023-03-20T19:24:41.009Z</lastmod>
+    <lastmod>2023-03-20T19:32:33.805Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/text/text-classification.html</loc>
-    <lastmod>2023-03-20T19:24:41.345Z</lastmod>
+    <lastmod>2023-03-20T19:32:34.142Z</lastmod>
   </url>
   <url>
     <loc>https://normalai.org/text/asking-pdfs-questions.html</loc>
-    <lastmod>2023-03-20T19:24:41.654Z</lastmod>
+    <lastmod>2023-03-20T19:32:34.467Z</lastmod>
   </url>
 </urlset>
