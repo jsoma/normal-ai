@@ -4,6 +4,12 @@ order: 4
 custom-header: ../assets/art-2.png
 ---
 
+<div style="display: none;">
+
+![](../assets/art-2.png)
+
+</div>
+
 Visual Question Answering (VQA) is a way to ask questions about pictures! If we want to get technical, it isn't actually an image model: it's a *multimodal* model that understands both images and text! The text part comes in when understanding what your question means.
 
 ## Use cases

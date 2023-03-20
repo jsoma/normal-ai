@@ -7,3 +7,7 @@ listing:
     max-description-length: 350
 order: 0
 ---
+
+There are many different tasks you can pursue with images! The most interesting concept you'll find is "stuff" vs "things," which you can explore when reading about [semantic segmentation](semantic-segmentation.qmd) and [instance segmentation](instance-segmentation.qmd).
+
+## Tasks and models for image analysis

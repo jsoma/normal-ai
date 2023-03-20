@@ -65,11 +65,17 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../static/style.css">
 <meta property="og:title" content="Normal AI - Text classification">
 <meta property="og:description" content="Putting documents into buckets">
+<meta property="og:image" content="https://normalai.org/assets/conveyor2.png">
 <meta property="og:site-name" content="Normal AI">
+<meta property="og:image:height" content="576">
+<meta property="og:image:width" content="2112">
 <meta name="twitter:title" content="Normal AI - Text classification">
 <meta name="twitter:description" content="Putting documents into buckets">
+<meta name="twitter:image" content="https://normalai.org/assets/conveyor2.png">
 <meta name="twitter:creator" content="@dangerscarf">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="576">
+<meta name="twitter:image-width" content="2112">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar docked nav-fixed fullcontent">
@@ -396,7 +402,10 @@ ul.task-list li input[type="checkbox"] {
     </header>
   
 
-<p>Text classification is one of the most basic yet most useful machine learning methods: it’s the proces of putting pieces of text into categories.</p>
+<div style="display: none;">
+<p><img src="../assets/conveyor2.png" class="quarto-discovered-preview-image img-fluid"></p>
+</div>
+<p>Text classification is one of the most basic yet most useful machine learning methods: it’s the process of putting pieces of text into categories.</p>
 <p>A “category” can be practically anything:</p>
 <ul>
 <li>A tweet can be positive or negative</li>
@@ -414,17 +423,20 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="try-it-out" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-out">Try it out</h2>
+<p>Below is a <strong>toxic comment detector</strong>, which classifies comments as various forms of toxic. Be kind, be mean, see it reacts! You can also see examples to click below.</p>
+<script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/3.22.1/gradio.js"></script>
+<p><gradio-app src="https://wendys-llc-unitary-toxic-bert.hf.space"></gradio-app></p>
 </section>
 <section id="models" class="level2">
 <h2 class="anchored" data-anchor-id="models">Models</h2>
 <section id="popular-models" class="level3">
 <h3 class="anchored" data-anchor-id="popular-models">Popular models</h3>
-<p>Any modern language model works fine for this. <a href="https://huggingface.co/models?pipeline_tag=text-classification&amp;sort=downloads">You can find plenty on Hugging Face</a>, they’ll typically be something with BERT or LM in the name.</p>
+<p>Any modern language model works fine for this. <a href="https://huggingface.co/models?pipeline_tag=text-classification&amp;sort=downloads">You can find plenty on Hugging Face</a>, they’ll typically be something with BERT or LM in the name. You might even find a pre-trained one for the classification task you’re looking for!</p>
 </section>
 <section id="state-of-the-art" class="level3">
 <h3 class="anchored" data-anchor-id="state-of-the-art">State of the art</h3>
-<p>The majority of the time our text classifiers are going to be fine-tuned versions of common large language models. The capability of our classifier isn’t going to be restrained by the model we choose – they’re all pretty good! – but rather by how much of our dataset we manually categorize. The more the better!</p>
-<p>To learn more, check out <a href="../diy/text-classification.html">building your own text classifier</a>.</p>
+<p>State of the art isn’t really a big deal here: the majority of the time our text classifiers are going to be fine-tuned versions of common large language models. The capability of our classifier isn’t going to be restrained by the model we choose – they’re all pretty good! – but rather by how much of our dataset we manually categorize. The more the better!</p>
+<p>To learn more, check out <a href="../diy/text-classification.html">building your own text classifier</a> or <a href="../intro/fine-tune-model.html">the introduction to using AutoTrain on Hugging Face</a> (it’s about images but you’ll get the idea).</p>
 
 
 </section>

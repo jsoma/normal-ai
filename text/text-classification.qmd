@@ -5,7 +5,13 @@ order: 1
 custom-header: ../assets/conveyor2.png
 ---
 
-Text classification is one of the most basic yet most useful machine learning methods: it's the proces of putting pieces of text into categories.
+<div style="display: none;">
+
+![](../assets/conveyor2.png)
+
+</div>
+
+Text classification is one of the most basic yet most useful machine learning methods: it's the process of putting pieces of text into categories.
 
 A "category" can be practically anything:
 
@@ -23,14 +29,23 @@ At least in journalism, the most common use case for text classification is when
 
 ## Try it out
 
+Below is a **toxic comment detector**, which classifies comments as various forms of toxic. Be kind, be mean, see it reacts! You can also see examples to click below.
+
+<script
+	type="module"
+	src="https://gradio.s3-us-west-2.amazonaws.com/3.22.1/gradio.js"
+></script>
+
+<gradio-app src="https://wendys-llc-unitary-toxic-bert.hf.space"></gradio-app>
+
 ## Models
 
 ### Popular models
 
-Any modern language model works fine for this. [You can find plenty on Hugging Face](https://huggingface.co/models?pipeline_tag=text-classification&sort=downloads), they'll typically be something with BERT or LM in the name.
+Any modern language model works fine for this. [You can find plenty on Hugging Face](https://huggingface.co/models?pipeline_tag=text-classification&sort=downloads), they'll typically be something with BERT or LM in the name. You might even find a pre-trained one for the classification task you're looking for!
 
 ### State of the art
 
-The majority of the time our text classifiers are going to be fine-tuned versions of common large language models. The capability of our classifier isn't going to be restrained by the model we choose – they're all pretty good! – but rather by how much of our dataset we manually categorize. The more the better!
+State of the art isn't really a big deal here: the majority of the time our text classifiers are going to be fine-tuned versions of common large language models. The capability of our classifier isn't going to be restrained by the model we choose – they're all pretty good! – but rather by how much of our dataset we manually categorize. The more the better!
 
-To learn more, check out [building your own text classifier](../diy/text-classification.qmd).
+To learn more, check out [building your own text classifier](../diy/text-classification.qmd) or [the introduction to using AutoTrain on Hugging Face](../intro/fine-tune-model.qmd) (it's about images but you'll get the idea).

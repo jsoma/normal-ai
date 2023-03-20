@@ -7,3 +7,7 @@ listing:
     max-description-length: 350
 order: 0
 ---
+
+Transcribing audio and treating it as text is a favorite pastime of audio models, but there are other options, too!
+
+## Tasks and models for audio analysis

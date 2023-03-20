@@ -5,6 +5,12 @@ order: 3
 custom-header: ../assets/semantic2.png
 ---
 
+<div style="display: none;">
+
+![](../assets/semantic2.png)
+
+</div>
+
 There are a handful of different ways that computers can look at images, and one of the options is "stuff" versus "things." Semantic segmentation can be used to find "stuff," the number of pixels dedicated to people, cars, vegetation, etc in an image.
 
 ## Use cases

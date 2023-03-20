@@ -65,11 +65,17 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../static/style.css">
 <meta property="og:title" content="Normal AI - Image classification">
 <meta property="og:description" content="Putting images into buckets">
+<meta property="og:image" content="https://normalai.org/assets/wat-3.png">
 <meta property="og:site-name" content="Normal AI">
+<meta property="og:image:height" content="420">
+<meta property="og:image:width" content="1887">
 <meta name="twitter:title" content="Normal AI - Image classification">
 <meta name="twitter:description" content="Putting images into buckets">
+<meta name="twitter:image" content="https://normalai.org/assets/wat-3.png">
 <meta name="twitter:creator" content="@dangerscarf">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="420">
+<meta name="twitter:image-width" content="1887">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar docked nav-fixed fullcontent">
@@ -396,6 +402,9 @@ ul.task-list li input[type="checkbox"] {
     </header>
   
 
+<div style="display: none;">
+<p><img src="../assets/wat-3.png" class="quarto-discovered-preview-image img-fluid"></p>
+</div>
 <p>Image classification allows you to put images into category. Typically these are yes/no questions.</p>
 <ul>
 <li>Does this satellite image show illegal mining operations?</li>
@@ -404,8 +413,14 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>Custom image classifiers are simple to build yourself! You can visit the <a href="../diy/image-classification.html">build your own image classifier page</a> for more details.</p>
 <p>Image classifiers are on the simpler end of the visual analysis spectrum. More advanced models can show exactly where things are in an image (e.g.&nbsp;vegetation, swimming pools), or segment out those individual things (e.g.&nbsp;cars, people). Keep reading to learn more about semantic segmentation and object detection.</p>
+<section id="try-it-out" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-out">Try it out</h2>
+<p>In the <a href="../intro/fine-tune-model.html">intro to fine-tuning</a> we build a <a href="https://huggingface.co/spaces/wendys-llc/wendys-llc-amber-mines">detector for illegal amber mines</a>. Click the examples below to see how it performs (although let’s be honest: right now I’m cheating by giving it images it’s already seen).</p>
+<script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/3.22.1/gradio.js"></script>
+<p><gradio-app src="https://wendys-llc-wendys-llc-amber-mines.hf.space"></gradio-app></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

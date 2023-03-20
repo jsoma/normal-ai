@@ -5,6 +5,12 @@ order: 2
 custom-header: ../assets/semantic.png
 ---
 
+<div style="display: none;">
+
+![](../assets/semantic.png)
+
+</div>
+
 There are a handful of different ways that computers can look at images, and one of the options is "stuff" versus "things." Instance segmentation can be used to find "things:" each individual person, car, tree, etc in an image.
 
 ## Use cases

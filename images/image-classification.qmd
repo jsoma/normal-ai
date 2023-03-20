@@ -5,6 +5,13 @@ order: 1
 custom-header: ../assets/wat-3.png
 ---
 
+<div style="display: none;">
+
+![](../assets/wat-3.png)
+
+</div>
+
+
 Image classification allows you to put images into category. Typically these are yes/no questions.
 
 * Does this satellite image show illegal mining operations?
@@ -14,3 +21,15 @@ Image classification allows you to put images into category. Typically these are
 Custom image classifiers are simple to build yourself! You can visit the [build your own image classifier page](../diy/image-classification.qmd) for more details.
 
 Image classifiers are on the simpler end of the visual analysis spectrum. More advanced models can show exactly where things are in an image (e.g. vegetation, swimming pools), or segment out those individual things (e.g. cars, people). Keep reading to learn more about semantic segmentation and object detection.
+
+## Try it out
+
+In the [intro to fine-tuning](../intro/fine-tune-model.qmd) we build a [detector for illegal amber mines](https://huggingface.co/spaces/wendys-llc/wendys-llc-amber-mines). Click the examples below to see how it performs (although let's be honest: right now I'm cheating by giving it images it's already seen).
+
+<script
+	type="module"
+	src="https://gradio.s3-us-west-2.amazonaws.com/3.22.1/gradio.js"
+></script>
+
+<gradio-app src="https://wendys-llc-wendys-llc-amber-mines.hf.space"></gradio-app>
+

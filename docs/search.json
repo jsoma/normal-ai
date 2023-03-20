@@ -14,6 +14,20 @@
     "text": "vid2seq"
   },
   {
+    "objectID": "video/index.html",
+    "href": "video/index.html",
+    "title": "Video models overview",
+    "section": "",
+    "text": "While you can use a tool like ffmpeg to split a video up and analyze it simple one frame at a time, there are also opportunities to analyze video as a whole."
+  },
+  {
+    "objectID": "video/index.html#tasks-and-models-for-video-analysis",
+    "href": "video/index.html#tasks-and-models-for-video-analysis",
+    "title": "Video models overview",
+    "section": "Tasks and models for video analysis",
+    "text": "Tasks and models for video analysis"
+  },
+  {
     "objectID": "intro/models.html",
     "href": "intro/models.html",
     "title": "What is a model?",
@@ -151,14 +165,28 @@
     "href": "images/index.html",
     "title": "Image models overview",
     "section": "",
-    "text": "Image classification\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nObject Detection: Finding things in photos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSemantic Segmentation: Finding stuff in photos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVQA: Asking questions about pictures\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "There are many different tasks you can pursue with images! The most interesting concept you’ll find is “stuff” vs “things,” which you can explore when reading about semantic segmentation and instance segmentation."
+  },
+  {
+    "objectID": "images/index.html#tasks-and-models-for-image-analysis",
+    "href": "images/index.html#tasks-and-models-for-image-analysis",
+    "title": "Image models overview",
+    "section": "Tasks and models for image analysis",
+    "text": "Tasks and models for image analysis"
   },
   {
     "objectID": "images/image-classification.html",
     "href": "images/image-classification.html",
     "title": "Image classification",
     "section": "",
-    "text": "Image classification allows you to put images into category. Typically these are yes/no questions.\n\nDoes this satellite image show illegal mining operations?\nDoes this photograph have a car in it?\nDoes this x-ray show a broken bone?\n\nCustom image classifiers are simple to build yourself! You can visit the build your own image classifier page for more details.\nImage classifiers are on the simpler end of the visual analysis spectrum. More advanced models can show exactly where things are in an image (e.g. vegetation, swimming pools), or segment out those individual things (e.g. cars, people). Keep reading to learn more about semantic segmentation and object detection."
+    "text": "Image classification allows you to put images into category. Typically these are yes/no questions.\nCustom image classifiers are simple to build yourself! You can visit the build your own image classifier page for more details.\nImage classifiers are on the simpler end of the visual analysis spectrum. More advanced models can show exactly where things are in an image (e.g. vegetation, swimming pools), or segment out those individual things (e.g. cars, people). Keep reading to learn more about semantic segmentation and object detection."
+  },
+  {
+    "objectID": "images/image-classification.html#try-it-out",
+    "href": "images/image-classification.html#try-it-out",
+    "title": "Image classification",
+    "section": "Try it out",
+    "text": "Try it out\nIn the intro to fine-tuning we build a detector for illegal amber mines. Click the examples below to see how it performs (although let’s be honest: right now I’m cheating by giving it images it’s already seen)."
   },
   {
     "objectID": "images/vqa.html",
@@ -221,28 +249,21 @@
     "href": "index.html#frequently-asked-questions",
     "title": "Normal AI",
     "section": "Frequently Asked Questions",
-    "text": "Frequently Asked Questions\n\nWhat is the difference between machine learning and AI?\nThere’s a legitimate answer to this, but generally speaking artificial intelligence is just machine learing with a better marketing team behind it.\nSo is there an actual technical differentiation to be made? Absolutely! Does this difference have any sort of meaningful impact on literally anything? Absolutely not!"
-  },
-  {
-    "objectID": "index.html#is-ai-going-to-steal-all-of-our-jobs",
-    "href": "index.html#is-ai-going-to-steal-all-of-our-jobs",
-    "title": "Normal AI",
-    "section": "Is AI going to steal all of our jobs?",
-    "text": "Is AI going to steal all of our jobs?\nIn the long run: sure, why not! Hopefully it will support universal healthcare and free school lunches while it’s cementing its power structures."
-  },
-  {
-    "objectID": "index.html#how-good-does-this-need-to-be-before-i-use-it-for-____",
-    "href": "index.html#how-good-does-this-need-to-be-before-i-use-it-for-____",
-    "title": "Normal AI",
-    "section": "How good does this need to be before I use it for ____?",
-    "text": "How good does this need to be before I use it for ____?\nYou aren’t going to get a number for this (at least not from me).\nInstead of focusing on metrics, look at what bad things happen if you’re wrong and plan accordingly. The downsides of a bad AI-generated BuzzFeed quiz is much less daunting than a bad AI-generated medical diagnosis. Design for social robustness.\n\nDoesn’t GPT-4 and the other new stuff surpass all of this?\nA few responses to this:\n\nSigh, yes. At least to a degree.\nMost of these fancy all-powerful multimodal models are currently only found behind paywalls and locked up by mega-corporations (although that definitely won’t last)\nThe more basic, one-task models you’ll find here are usually lighter, faster, and can run easily on your own computer\n\nIf you poke around in the “custom” section you’ll see how we can use GPT etc to speed up the training process of our models, then letting our model take over. It’s like hiring a college kid to tutor a middle schooler."
+    "text": "Frequently Asked Questions\n\nWhat is the difference between machine learning and AI?\nThere’s a legitimate answer to this, but generally speaking people will call literally anything machine learning-y “artificial intelligence” to seem fancy (just like I’m doing here on this website!). If you’d like to see me stop pretending, check out investigate.ai.\nIs there an actual technical differentiation to be made between the two? Absolutely! Does this difference have any sort of meaningful impact on literally anything? Absolutely not!\n\n\nIs AI going to steal all of our jobs?\nIn the long run: sure, why not! Hopefully it will support universal healthcare and free school lunches while it’s cementing its power structures.\n\n\nHow good does this need to be before I use it for ____?\nYou aren’t going to get a number for this (at least not from me).\nInstead of focusing on metrics, look at what bad things happen if you’re wrong and plan accordingly. The downsides of a bad AI-generated BuzzFeed quiz is much less daunting than a bad AI-generated medical diagnosis. Design for social robustness.\n\n\nDoesn’t GPT-4 and the other new stuff surpass all of this?\nA few responses to this:\n\nSigh, yes, kind of, to a degree.\nMost of these fancy all-powerful multimodal models are currently only found behind paywalls and locked up by mega-corporations (although that sometimes doesn’t last). So it might just depend on how much money you want to spend?\nThe more basic, single-task models you’ll find here are usually lighter, faster, and can run easily on your own computer.\n\nIf you poke around in the “custom” section you’ll see how we can use GPT etc to speed up the training process of our models, then letting our model take over. It’s like hiring a college kid to tutor a middle schooler.\n\n\nWhy don’t all these pages work?\nI got bored!\nBut if you let me know you like it I’ll be charmed, and then I’ll do things like add sections about how to use each model in Python, links to colab notebooks, and all sorts of other fancy things."
   },
   {
     "objectID": "audio/index.html",
     "href": "audio/index.html",
     "title": "Audio models overview",
     "section": "",
-    "text": "Transcription\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoise removal\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Transcribing audio and treating it as text is a favorite pastime of audio models, but there are other options, too!"
+  },
+  {
+    "objectID": "audio/index.html#tasks-and-models-for-audio-analysis",
+    "href": "audio/index.html#tasks-and-models-for-audio-analysis",
+    "title": "Audio models overview",
+    "section": "Tasks and models for audio analysis",
+    "text": "Tasks and models for audio analysis"
   },
   {
     "objectID": "audio/transcription.html",
@@ -396,14 +417,21 @@
     "href": "text/index.html",
     "title": "Text models overview",
     "section": "",
-    "text": "Text classification\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDetecting people, places, things and more\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsking questions about documents\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDocument similarity\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsking PDFs questions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "While working with image classification is probably the most common task you’ll find, there are plenty of other more advanced possibilities as well!"
+  },
+  {
+    "objectID": "text/index.html#tasks-and-models-for-text-analysis",
+    "href": "text/index.html#tasks-and-models-for-text-analysis",
+    "title": "Text models overview",
+    "section": "Tasks and models for text analysis",
+    "text": "Tasks and models for text analysis"
   },
   {
     "objectID": "text/text-classification.html",
     "href": "text/text-classification.html",
     "title": "Text classification",
     "section": "",
-    "text": "Text classification is one of the most basic yet most useful machine learning methods: it’s the proces of putting pieces of text into categories.\nA “category” can be practically anything:"
+    "text": "Text classification is one of the most basic yet most useful machine learning methods: it’s the process of putting pieces of text into categories.\nA “category” can be practically anything:"
   },
   {
     "objectID": "text/text-classification.html#use-cases",
@@ -417,14 +445,14 @@
     "href": "text/text-classification.html#try-it-out",
     "title": "Text classification",
     "section": "Try it out",
-    "text": "Try it out"
+    "text": "Try it out\nBelow is a toxic comment detector, which classifies comments as various forms of toxic. Be kind, be mean, see it reacts! You can also see examples to click below."
   },
   {
     "objectID": "text/text-classification.html#models",
     "href": "text/text-classification.html#models",
     "title": "Text classification",
     "section": "Models",
-    "text": "Models\n\nPopular models\nAny modern language model works fine for this. You can find plenty on Hugging Face, they’ll typically be something with BERT or LM in the name.\n\n\nState of the art\nThe majority of the time our text classifiers are going to be fine-tuned versions of common large language models. The capability of our classifier isn’t going to be restrained by the model we choose – they’re all pretty good! – but rather by how much of our dataset we manually categorize. The more the better!\nTo learn more, check out building your own text classifier."
+    "text": "Models\n\nPopular models\nAny modern language model works fine for this. You can find plenty on Hugging Face, they’ll typically be something with BERT or LM in the name. You might even find a pre-trained one for the classification task you’re looking for!\n\n\nState of the art\nState of the art isn’t really a big deal here: the majority of the time our text classifiers are going to be fine-tuned versions of common large language models. The capability of our classifier isn’t going to be restrained by the model we choose – they’re all pretty good! – but rather by how much of our dataset we manually categorize. The more the better!\nTo learn more, check out building your own text classifier or the introduction to using AutoTrain on Hugging Face (it’s about images but you’ll get the idea)."
   },
   {
     "objectID": "text/asking-pdfs-questions.html",

@@ -2,3 +2,7 @@
 title: "Video models overview"
 order: 0
 ---
+
+While you can use a tool like ffmpeg to split a video up and analyze it simple one frame at a time, there are also opportunities to analyze video as a whole.
+
+## Tasks and models for video analysis

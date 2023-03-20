@@ -1,6 +1,6 @@
 ---
 title: "Using existing models"
-custom-header: ../assets/wizard.png
+custom-header: assets/wizard.png
 listing: 
   - id: text-models
     contents: "text/*.qmd"

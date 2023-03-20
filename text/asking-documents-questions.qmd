@@ -9,6 +9,12 @@ order: 3
 custom-header: ../assets/doc-qs.png
 ---
 
+<div style="display: none;">
+
+![](../assets/doc-qs.png)
+
+</div>
+
 Question answering has a lot of sub-sections, but the idea in general is that you have a document and ask the model a question to be answered from it.
 
 Getting answers from documents isn't a fully-solved problem yet! Most of the issues deal with the length of the input – while getting answers from article-sized texts is pretty simple, larger documents are more difficult to extract answers from, and often need to be broken up into smaller pieces.

@@ -7,3 +7,7 @@ listing:
     max-description-length: 350
 order: 0
 ---
+
+While working with image classification is probably the most common task you'll find, there are plenty of other more advanced possibilities as well!
+
+## Tasks and models for text analysis
