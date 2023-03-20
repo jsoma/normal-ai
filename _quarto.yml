@@ -8,7 +8,9 @@ website:
   title: "Normal AI"
   twitter-card:
     creator: "@dangerscarf"
-  open-graph: true
+    image: assets/conveyor.png
+  open-graph:
+    image: assets/conveyor.png
   search: true
   # reader-mode: true
   repo-url: https://github.com/jsoma/normal-ai
