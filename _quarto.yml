@@ -6,6 +6,7 @@ execute:
 resources:
   - CNAME
 website:
+  google-analytics: "G-T8MPS78ZR0"
   title: "Normal AI"
   twitter-card:
     creator: "@dangerscarf"
