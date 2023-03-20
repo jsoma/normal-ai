@@ -7,6 +7,12 @@ format:
     toc: False
 ---
 
+<div class="display: none;">
+
+![](assets/conveyor.png)
+
+</div>
+
 This site is an attempt at a down-to-earth explanation of modern AI and machine learning. It isn't all just ChatGPT! We're here to learn about what AI and machine learning models are, how to use them, and get a little inspiration from what's possible.
 
 ::: {.callout-warning}
