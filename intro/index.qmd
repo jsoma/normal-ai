@@ -1,0 +1,15 @@
+---
+title: "Welcome"
+subtitle: "Time to meet the black box"
+href: intro
+---
+
+It probably makes sense to know a little bit of the fundamentals of AI and machine learning before you jump headfirst into using it! While I don't think the math or specific theories  are very useful, you should at least know the vocabulary and have a vague idea of how these systems fit together.
+
+In this section we'll start by looking at what a **model** is, the most fundamental aspect of AI and machine learning. Every time you talk to ChatGPT or ask DALL-E for an image you're actually talking to a model!
+
+After testing out a few different pre-existing models, we'll move on to how we can build our own models through **training** (or, more realistically: **fine-tuning** others' more powerful models). This will also reveal the shortcomings of these tools, along with the difference between the older custom machine learning models and the newer "black box" AI-driven ones.
+
+Finally, we'll look at... I'm not sure how we're dividing this up yet, honestly. But we'll definitely have three sections!
+
+So let's do this.

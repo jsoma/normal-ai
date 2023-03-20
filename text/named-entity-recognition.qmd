@@ -1,0 +1,32 @@
+---
+title: "Detecting people, places, things and more"
+subtitle: "Named entity recognition"
+order: 2
+---
+
+Named entity recognition (NER) is also known as token classification or span classification. Instead of classifying an entire document, it pulls out bits and pieces you might be interested in: names, organization names, places, money, etc.
+
+## Use cases
+
+NER could be used to pull out the names of everyone mentioned in an email thread or quoted in a newspaper article.
+
+## Try it out
+
+<iframe
+	src="https://pie-ner.hf.space"
+	frameborder="0"
+	width="850"
+	height="450"
+></iframe>
+
+## Models
+
+### Popular Models
+
+Hugging Face has [plenty of NER models listed under "token classification"](https://huggingface.co/models?pipeline_tag=token-classification&sort=downloads). The most popular is [StanfordAIMI/stanford-deidentifier-base](https://huggingface.co/StanfordAIMI/stanford-deidentifier-base), but it's just for medical work! You'll probably have better luck with [dslim/bert-base-NER](https://huggingface.co/dslim/bert-base-NER) or [Davlan/bert-base-multilingual-cased-ner-hrl](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl).
+
+### State of the art
+
+[Named entity recognition on Papers with Code](https://paperswithcode.com/task/named-entity-recognition-ner) shows that pretty much everything sits in the 90's, so I wouldn't worry too much about what model you pick.
+
+If you're looking at a model with different size options, larger ones often perform much better at NER. For example, many spaCy tutorials suggest you use `en_core_web_sm` which is small. Instead, you probably want `en_core_web_lg` which has a lot more data in it. The model name should make it obvious as to whether it's a smaller version of a "full" model.

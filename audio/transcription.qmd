@@ -1,0 +1,30 @@
+---
+title: "Transcription"
+subtitle: Converting spoken words into text
+order: 1
+custom-header: ../assets/audio.png
+---
+
+Transcription is one of the most useful techniques to apply to audio. It's also fiendishly difficult, although models have gotten much better in recent years.
+
+## Use cases
+
+If speech can be accurately converted into text, everything we can do with text we can now do with speech.
+
+## Try it out
+
+## Models
+
+### Popular models
+
+Whisper is without a doubt the most popular transcription model at the moment. And not only that: it's *really really good*. It supports a plethora of languages, too.
+
+The only thing to note is that the Whisper model comes in different sizes: the larger the model, the better it is. But larger models are also slower, and require more resources to run, which potentially means it costs more. You'll need to figure out what's best for you based on your use case and the quality of your source audio.
+
+::: {.callout-info}
+You might also look at [noise removal](removing-noise.qmd) before sending your audio to be transcribed.
+:::
+
+### State of the art
+
+I should look this up once I'm not on a plane.

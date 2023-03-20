@@ -1,0 +1,27 @@
+---
+title: "Object Detection: Finding things in photos"
+subtitle: Drawing boxes around whatever we find
+order: 2
+custom-header: ../assets/semantic.png
+---
+
+There are a handful of different ways that computers can look at images, and one of the options is "stuff" versus "things." Instance segmentation can be used to find "things:" each individual person, car, tree, etc in an image.
+
+## Use cases
+
+Instance segmentation is great at answering the question of "is XXXX in this photo?" You can think of it as an image classification model with a little bit more nuance.
+
+You might want to filter thousands of photos to only show the ones that include a car or an elephant, or count the number of people in the image of a crowd.
+
+Instance segmentation also shows you *where* in the image something is, which may or may not be useful.
+
+## Try it out
+
+The examples are not as simple as I'd like, but we'll go with [this one](https://huggingface.co/spaces/adirik/OWL-ViT) for now. Be sure to scroll down to click the examples!
+
+<script
+	type="module"
+	src="https://gradio.s3-us-west-2.amazonaws.com/3.1.3/gradio.js"
+></script>
+
+<gradio-app src="https://adirik-owl-vit.hf.space"></gradio-app>

@@ -1,0 +1,36 @@
+---
+title: "Text classification"
+subtitle: "Putting documents into buckets"
+order: 1
+custom-header: ../assets/conveyor2.png
+---
+
+Text classification is one of the most basic yet most useful machine learning methods: it's the proces of putting pieces of text into categories.
+
+A "category" can be practically anything:
+
+* A tweet can be positive or negative
+* A book can be romance, sci-fi, or literary fiction
+* A document can be Spanish, Portuguese or French
+
+## Use cases 
+
+At least in journalism, the most common use case for text classification is when we don't want to read ten billion documents, we only want to see the ones we're likely interested in. Maybe there was a big leak of emails, maybe we need to dig through a hefty amount of legislation, maybe we have a bunch of public comments on a government policy. It works like this:
+
+1. We read a portion of them, sorting them into two categories: `YES` we're interested in this one, or `NO` we're not.
+2. We feed it into the machine, the machine learns the difference between the two.
+3. We show it the rest of the documents, it sorts them into `YES` and `NO` piles for us.
+
+## Try it out
+
+## Models
+
+### Popular models
+
+Any modern language model works fine for this. [You can find plenty on Hugging Face](https://huggingface.co/models?pipeline_tag=text-classification&sort=downloads), they'll typically be something with BERT or LM in the name.
+
+### State of the art
+
+The majority of the time our text classifiers are going to be fine-tuned versions of common large language models. The capability of our classifier isn't going to be restrained by the model we choose – they're all pretty good! – but rather by how much of our dataset we manually categorize. The more the better!
+
+To learn more, check out [building your own text classifier](../diy/text-classification.qmd).

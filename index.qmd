@@ -1,0 +1,42 @@
+---
+title: "Normal AI"
+subtitle: "A totally normal dictionary of modern AI and machine learning"
+href: intro
+format:
+  html:
+    toc: False
+---
+
+This site is an attempt at a down-to-earth explanation of modern AI and machine learning. It isn't all just ChatGPT! We're here to learn about what AI and machine learning models are, how to use them, and get a little inspiration from what's possible.
+
+::: {.callout-warning}
+Unfortunately "what's possible" is a moving target, so take this all as being ever-so-slightly out of date.
+:::
+
+## Frequently Asked Questions
+
+### What is the difference between machine learning and AI?
+
+There's a legitimate answer to this, but *generally speaking* artificial intelligence is just machine learing with a better marketing team behind it.
+
+So is there an actual technical differentiation to be made? Absolutely! Does this difference have any sort of meaningful impact on literally anything? Absolutely not!
+
+## Is AI going to steal all of our jobs?
+
+In the long run: sure, why not! Hopefully it will support universal healthcare and free school lunches while it's cementing its power structures.
+
+## How good does this need to be before I use it for ____?
+
+You aren't going to get a number for this (at least not from me).
+
+Instead of focusing on metrics, look at what bad things happen if you're wrong and plan accordingly. The downsides of a bad AI-generated BuzzFeed quiz is much less daunting than a bad AI-generated medical diagnosis. **Design for social robustness.**
+
+### Doesn't GPT-4 and the other new stuff surpass all of this?
+
+A few responses to this:
+
+1. Sigh, yes. At least to a degree.
+2. Most of these fancy all-powerful multimodal models are currently only found behind paywalls and locked up by mega-corporations (although [that definitely won't last](https://github.com/cocktailpeanut/dalai))
+3. The more basic, one-task models you'll find here are usually lighter, faster, and can run easily on your own computer
+
+If you poke around in the "custom" section you'll see how we can use GPT etc to speed up the training process of our models, then letting our model take over. It's like hiring a college kid to tutor a middle schooler.

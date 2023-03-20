@@ -1,0 +1,34 @@
+---
+title: "VQA: Asking questions about pictures"
+order: 4
+custom-header: ../assets/art-2.png
+---
+
+Visual Question Answering (VQA) is a way to ask questions about pictures! If we want to get technical, it isn't actually an image model: it's a *multimodal* model that understands both images and text! The text part comes in when understanding what your question means.
+
+## Use cases
+
+News outlets had a nasty habit of [using pictures of Asian people in stories about COVID](https://www.nbcnews.com/news/asian-america/news-outlets-criticized-using-chinatown-photos-coronavirus-articles-n1150626), even if the stories were 100% about the United States. During a [talk about AI editors](https://github.com/jsoma/nicar23-building-ai-editors) I showed how you could run these images through a VQA and ask things like "is there an Asian person in this image?" or "is this a photograph of Chinatown?"
+
+## Try it out
+
+[This example](https://huggingface.co/spaces/nielsr/comparing-VQA-models) allows you to compare several different question-answering models.
+
+<script
+	type="module"
+	src="https://gradio.s3-us-west-2.amazonaws.com/3.15.0/gradio.js"
+></script>
+
+<gradio-app src="https://nielsr-comparing-vqa-models.hf.space"></gradio-app>
+
+## VQA Models
+
+### Popular models
+
+If you look at [the Hugging Face models page](https://huggingface.co/models?pipeline_tag=visual-question-answering&sort=downloads) VQA isn't nearly as popular as text-based models. The [BLIP model](https://huggingface.co/Salesforce/blip-vqa-base) from Salesforce is a popular one, though, as is [ViLT](https://huggingface.co/dandelin/vilt-b32-finetuned-vqa).
+
+### State of the art
+
+If you [poke around paperswithcode](https://paperswithcode.com/task/visual-question-answering), the most popular evaluation is [VQA v2 test-dev](https://paperswithcode.com/sota/visual-question-answering-on-vqa-v2-test-dev). Most models score a nudge above 80%.
+
+You can see the kinds of questions the test asks on the [VQA v2 teaser page](https://visualqa.org/vqa_v2_teaser.html).

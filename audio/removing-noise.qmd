@@ -1,0 +1,5 @@
+---
+title: "Noise removal"
+subtitle: "Cleaning up that muffled, grainy track"
+order: 4
+---

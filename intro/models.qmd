@@ -1,0 +1,326 @@
+---
+title: "What is a model?"
+href: models
+format:
+  html:
+    toc: true
+---
+
+First things first: we need to learn about **models**. Models are the foundation of every single artificial intelligence or machine learning system out there!
+
+::: {.callout-warning}
+**This is by far the longest, most detailed page on the site!** I'm biased, but I do think it's absolutely worth reading through.
+
+The sections below provide the foundation to understand the rest of the site. Buzzwords like models, training, and fine-tuning, along with how you might use leverage (or even customize!) AI/ML tools in your own work.
+:::
+
+Generally speaking, a model simplifies the wild complicated system of the world into something simple. Machine learning and AI models learn to recognize patterns in the data given to them, which they then use to make predictions.
+
+It's tough to say what we mean by "data" and "predictions," because it could be pretty much anything:
+
+* The **data** could be almost anything that exists on a computer: a document, a photograph, a web page, an audio file, a video...
+* The **prediction** could be as simple as a yes/no answer or a category, or as complicated as coordinates where it found a bunny rabbit or an image of a shoe!
+
+A model might learn that the word "love" is positive, what a coffee cup looks like, or where to find the total on a receipt. It's practically limitless!
+
+In this walkthrough we're going to use a simple, relateable model to walk through what AI or machine learning models can do, how they are made, and how they might disagree with one another (even if they're doing the same thing!). Along the way you'll learn all about **sentiment analysis**, the ability of a computer to detect human emotion in pieces of text.
+
+## Introduction to sentiment analysis
+
+Let's say we're Coca-Cola, and we release a new product called New Coke. How can we tell whether people like it or not?
+
+Well, we *could* go interview a lot of people about their thoughts on New Coke, but that doesn't seem very modern! Instead, we'll just download 1,000,000 tweets that mention New Coke and see if most of the tweets are positive or negative.
+
+But how are we going to tell whether those tweets are positive or negative?
+
+Well, we *could* pay an army of interns to review all of those tweets, we'd rather spend that money on donuts. Instead, we'll just have a computer tell us whether each tweet is positive or negative.
+
+**That's sentiment analysis.** A computer looking at some text and and telling us the emotion in it!
+
+In this case, we're going to be using a **sentiment analysis model.** While we could pay a person with a full-functioning understanding of language, irony, criticism, culture, etc, to rate the tweets, that's just too much work. Instead we'll use a simplified model that a computer can operate.
+
+## Performing sentiment analysis
+
+We're going to be using a tool called [Hugging Face](https://huggingface.co/) to do sentiment analysis for us. If you can't code, no worries! It's super simple and we only care about the output.
+
+We'll start by performing sentiment analysis on a very simple, very easy statement: **I love you** (we borrowed the code from [a blog post](https://huggingface.co/blog/sentiment-analysis-python) about how to do sentiment analysis in Python).
+
+
+```{python}
+#| echo: false
+# pip install -q transformers sentencepiece
+```
+
+
+```{python}
+from transformers import pipeline
+
+sentiment_pipeline = pipeline("sentiment-analysis")
+data = ["I love you"]
+sentiment_pipeline(data)
+```
+
+According to this tool, "I love you" is `POSITIVE` with a score of 0.9999! That seems pretty accurate and pretty fantastic.
+
+One thing that *doesn't* seem fantastic, though, is the warning we got:
+
+> No model was supplied, defaulted to distilbert-base-uncased-finetuned-sst-2-english and revision af0f99b (https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english).
+> Using a pipeline without specifying a model name and revision in production is not recommended.
+
+We don't understand the details, but it seems like we should probably specify a model name.
+
+
+## Specifying a model
+
+The warning linked us to [distilbert-base-uncased-finetuned-sst-2-english](https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english), which we can assume is a model. The name is crazy but we'll accept it for now.
+
+To learn how to specify a model name we search the internet a bit and find an answer:
+
+```python
+sentiment_pipeline = pipeline(
+    "sentiment-analysis",
+    model='YOUR MODEL NAME'
+)
+```
+
+So let's try again, this time giving it the name of the suggested model.
+
+```{python}
+sentiment_pipeline = pipeline(
+    "sentiment-analysis",
+    model='distilbert-base-uncased-finetuned-sst-2-english'
+)
+data = ["I love you"]
+sentiment_pipeline(data)
+```
+
+Great, we got the same result and no error! While that's certainly relaxing, it doesn't seem like we learned anything new.
+
+Not learning new things makes us antsy, so we start poking around the Hugging Face site.
+
+
+## Differences of opinion
+
+While browsing the Hugging Face site, we quickly discover [that there are *all sorts of models* for sentiment analysis](https://huggingface.co/models?pipeline_tag=text-classification&sort=downloads&search=sentiment) with equally strange names. A few we see are:
+
+* `cardiffnlp/twitter-roberta-base-sentiment`
+* `Seethal/sentiment_analysis_generic_dataset`
+* `finiteautomata/beto-sentiment-analysis`
+* `siebert/sentiment-roberta-large-english`
+
+Out of that list we go ahead and pick [`twitter-roberta-base-sentiment`](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment) to test out. The website says it's been downloaded over a million times in the past month, and based on the name it seems to know something about Twitter (remember, we're supposedly analyzing tweets!). It's a perfect match!
+
+Let's give replace the `distilbert-base-uncased-finetuned-sst-2-english` model with this new model and see what happens:
+
+```{python}
+sentiment_pipeline = pipeline(
+    "sentiment-analysis",
+    model='cardiffnlp/twitter-roberta-base-sentiment'
+)
+data = ["I love you"]
+sentiment_pipeline(data)
+```
+
+According to the notes on [the `twitter-roberta-base-sentiment` model page](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment), `LABEL_2` is positive. So it knows "I love you" is positive, genius!
+
+That part sounds good, but there's a catch: **our last model said it was positive with a 0.9999 probability, while this one scores at 0.9557 instead.**
+
+Is one of those responses more correct than the other?
+
+* One person might say "I love you" is just about as positive as you can possibly get. It's the ultimate positive phrase, and deserves a nice high 0.9999 score.
+* Another person might say that even though "I love you" is supposed to be the ultimate positive phrase, what about "I *really* love you," or "I really *really* really love you?" They're even more positive than a simple "I love you" and deserve a higher score! Therefore 0.9557 is perfectly fine for a basic boring love proclamation.
+* A *third* person says well, I'm not here to rank anyone's love, let's just all agree that they're positive and ignore the score completely!
+
+::: {.callout-note}
+## An important lesson
+
+**Just like people can have different opinions, different models can disagree with each other.**
+
+While some things are reasonably objective - love vs hate being positive vs negative, for example – other situations like edge cases, nuance or degree isn't always so easy.
+
+*Why did they disagree? We'll get to that soon!*
+:::
+
+
+
+## Limits of knowledge
+
+While models will often disagree about details, there's another situation that might come up: sometimes models are just plain ignorant!
+
+Let's bring `twitter-roberta` some international French romance with *Je t'adore*.
+
+```{python}
+sentiment_pipeline = pipeline(
+    "sentiment-analysis",
+    model='cardiffnlp/twitter-roberta-base-sentiment'
+)
+data = ["Je t'adore"]
+sentiment_pipeline(data)
+```
+
+A proclamation of love in most romantic language of them all, and twitter-roberta gives it a `LABEL_1`: **neutral!** We might not know anything about French, but we know that's just plain wrong.
+
+### Finding more models
+
+Luckily there are *many many models*, so chances are we can find one that speakes French!
+
+Browsing [the list of models that perform sentiment analysis](https://huggingface.co/models?pipeline_tag=text-classification&sort=downloads&search=sentiment), we come across [twitter-xlm-roberta-base-sentiment](https://huggingface.co/cardiffnlp/twitter-xlm-roberta-base-sentiment), the most-downloaded sentiment model of all time. According to its bio page, this model understands:
+
+* Arabic
+* English
+* French
+* German
+* Hindi
+* Italian
+* Spanish
+* Portuguese
+
+Let's try it out with our romantic French line!
+
+
+```{python}
+sentiment_pipeline = pipeline(
+    "sentiment-analysis",
+    model='cardiffnlp/twitter-xlm-roberta-base-sentiment'
+)
+data = ["Je t'adore"]
+sentiment_pipeline(data)
+```
+
+Perfect! ...but how about our old friend English?
+
+```{python}
+data = ["I love you"]
+sentiment_pipeline(data)
+```
+
+The positive score isn't as high as we might have hoped. But at least the model knows "I love you" in English is positive! Before we tracked down this multilingual model, our old model thought "Je t'adore" was neutral.
+
+::: {.callout-note}
+## An important lesson
+
+Models only know what they've been taught: just like my cat can't load the dishwasher, some models only know English and can't judge French sentiment. When you start using a model, you'll want to double-check that it understands what you're asking it to work on.
+:::
+
+## How models learn
+
+Why does one model know French and another doesn't? Or how do two models end up disagreeing about the same sentence? Just like people, **models have different backgrounds**.
+
+There are two major ways that models learn: **training** and **fine tuning**. We'll talk about them more in the next chapter, but for now we'll provide a short overview.
+
+### Training
+
+**Training** is the process of teaching a model from the very beginning. Think of the model like a little baby who needs to learn to walk and crawl and do all those things from absolute zero experience!
+
+In the case of sentiment analysis, we might train the model by showing it examples of positive tweets and saying "this is a positive tweet!," then showing it examples of negative tweets and saying "this is a negative tweet!". Over time it learns the word "love" shows up more often in positive tweets, while "hate" shows up more often in negative tweets.
+
+In our case: the model that understands French was also trained on French data instead of just English. And the two models that disagree about exactly how positive a sentence is might have just seen different examples of positive and negative tweets over their "lifetime," which makes them come to different score conclusions. 
+
+A problem with training is it can require a lot of data to teach a model effectively. Another option is fine-tuning.
+
+### Fine-tuning
+
+**Fine-tuning** is taking an existing model and teaching it something new. It's like finding someone who knows French and teaching them Spanish or German: they might not be perfect immediately, but some of the skills they know already probably transfer over (and they're definitely better than a baby!).
+
+For the trained-from-scratch model, once it learned that "love" was positive, that was the end of things. But not for the fine-tuned model! Since the model understands relationships between words, the model might also understand that "loving," "like" and other similar words should increase the positive score.
+
+If you notice the model names so far, they're `twitter-xlm-roberta-base-sentiment` and `distilbert-base-uncased-finetuned-sst-2-english`. The first one is actually a fine-tuned version of a model called [RoBERTa](https://huggingface.co/docs/transformers/model_doc/roberta) and the second is a fine-tuned version of a model called [DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert)!
+
+These original models are general-purpose language models that understand how language and words work, and the ones we're using have been tweaked specifically to learn sentiment analysis.
+
+::: {.callout-note}
+They also both have `BERT` in their names because they're based on a similar technology called [Bidirectional Encoder Representations from Transformers - BERT](https://huggingface.co/docs/transformers/model_doc/bert).
+:::
+
+### Finding training data
+
+How do you find positive or negative tweets to train your dataset on? Finding data is one of the big challenges of training (or fine-tuning) machine learning or AI models.
+
+One dataset I find amazing is [Sentiment140](http://help.sentiment140.com/), a dataset of 1.6 million tweets tagged as positive or negative. Did they pay hundreds of people to read through each tweet, marking it as positive or negative? No, they just looked for tweets with `:)` and `:(` and marked them as positive or negative!
+
+You'll often find sentiment models trained on movie reviews from IMDB or product reviews from Amazon. That's because just like the last example, you don't need to ask anyone whether it's positive or negative before you feed it to the model: every review automatically comes with a score! You can be confident that one star is negative and 5 stars is positive (although expanding outside of that becomes more of an editorial decision).
+
+We'll discuss this much more in upcoming chapters.
+
+
+## Flavors of sentiment
+
+As you browse the [sentiment analysis models page](https://huggingface.co/models?pipeline_tag=text-classification&sort=downloads&search=sentiment) you see all sorts of strangely-specific models:
+
+* The previous Twitter/multilinguage Twitter options
+* [One for Amazon reviews](https://huggingface.co/LiYuan/amazon-review-sentiment-analysis)
+* [Financial news](https://huggingface.co/mrm8488/distilroberta-finetuned-financial-news-sentiment-analysis)
+* [Japanese cyberbulling](https://huggingface.co/kit-nlp/bert-base-japanese-sentiment-cyberbullying), [climate](https://huggingface.co/Usamaejaz0/climate-sentiment-analysis-monday-hackathon), and a lot more...
+
+How different are each of these models? Let's take three of them and compare their results across a handful of sentences.
+
+
+```{python}
+import pandas as pd
+
+pd.options.display.max_colwidth = None
+pd.options.display.float_format = '{:.3f}'.format
+
+df = pd.DataFrame({'content': [
+    "I love love love love this kitten",
+    "I hate hate hate hate this keyboard",
+    "I'm not sure how I feel about toast",
+    "Sales of bad candy are up 200% in the third quarter",
+    "Did you see the baseball game yesterday?",
+    "The package was delivered late and the contents were broken",
+    "Trashy television shows are some of my favorites",
+    "I'm seeing a Kubrick film tomorrow, I hear not so great things about it.",
+    "I find chirping birds irritating, but I know I'm not the only one",
+]})
+
+# Twitter sentiment
+sentiment_pipeline = pipeline(model="cardiffnlp/twitter-xlm-roberta-base-sentiment")
+results = sentiment_pipeline(df.content.tolist())
+results = pd.DataFrame(results).add_prefix('twitter-')
+df = df.join(results)
+
+# Amazon review sentiment
+sentiment_pipeline = pipeline(model="LiYuan/amazon-review-sentiment-analysis")
+results = sentiment_pipeline(df.content.tolist())
+results = pd.DataFrame(results).add_prefix('amazon-')
+df = df.join(results)
+
+# Financial news sentiment
+sentiment_pipeline = pipeline(model="mrm8488/distilroberta-finetuned-financial-news-sentiment-analysis")
+results = sentiment_pipeline(df.content.tolist())
+results = pd.DataFrame(results).add_prefix('finance-')
+df = df.join(results)
+
+df
+```
+
+The first thing we'll notice is that it isn't always just positive and negative options for the three models:
+
+* **Twitter multilanguage:** positive, negative, neutral
+* **Amazon:** 1-5 stars
+* **Finance:** positive, negative, neutral
+
+We might make an assumption that 1-2 stars is negative, 3 is neutral, and 4-5 is positive. Even then, the sentiment scores between the three models are rarely the same!
+
+The most interesting is "Sales of bad candy are up 200% in the third quarter." This sentence is neutral to the Twitter sentiment model, but is the *only positive sentence* for the financial model! Thanks to the power of fine-tuning, everything the finance model might have once known about the beauty of the world has been discarded in favor of sales sales sales!
+
+::: {.callout-note}
+## An important lesson
+
+Whoever built the model is in control of what the model thinks, and the model only knows what it's been shown. As much as we as humans might think loving a kitten is a positive thing, it isn't the case for a model that only knows about finance!
+:::
+
+## Labels and text classification
+
+The Amazon review model showed us something interesting: **sentiment analysis doesn't need to explicitly be about sentiment.** In the same way that a model can associate words with being a positive or negative tweet, it could also rate it as one, two, three, four or five stars.
+
+And to be honest with you: it goes far beyond that. You can train a model to put a piece of text into *any* sort of categories, from scanning for toxic comments online to determining whether a legislative bill is about gun control.
+
+Sentiment analysis is just one tiny subset of **text classification models**, which are (predictably) about putting classifying pieces of text. Some examples of text classification models from Hugging Face:
+
+* [papluca/xlm-roberta-base-language-detection](https://huggingface.co/papluca/xlm-roberta-base-language-detection) to determine the language of a piece of text
+* [unitary/toxic-bert](https://huggingface.co/unitary/toxic-bert) to detect toxic content online
+* [roberta-base-openai-detector](https://huggingface.co/roberta-base-openai-detector) to test whether a document was written by AI
+* [yiyanghkust/finbert-fls](https://huggingface.co/yiyanghkust/finbert-fls) to examine forward-looking remarks in financial statements
+
+While sentiment analysis has pretty limited use cases for us (sorry Coca-Cola!), text classification as a whole opens up a wide, wide world of opportunities. In the next section we'll look at how to **fine-tune our own text classifier** and how the modern methods contrast with the hand-crafted machine learning techniques of the past.

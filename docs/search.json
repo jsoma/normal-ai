@@ -1,0 +1,457 @@
+[
+  {
+    "objectID": "video/describing.html",
+    "href": "video/describing.html",
+    "title": "Describing actions in videos",
+    "section": "",
+    "text": "vid2seq"
+  },
+  {
+    "objectID": "video/describing.html#models",
+    "href": "video/describing.html#models",
+    "title": "Describing actions in videos",
+    "section": "",
+    "text": "vid2seq"
+  },
+  {
+    "objectID": "intro/models.html",
+    "href": "intro/models.html",
+    "title": "What is a model?",
+    "section": "",
+    "text": "First things first: we need to learn about models. Models are the foundation of every single artificial intelligence or machine learning system out there!\nGenerally speaking, a model simplifies the wild complicated system of the world into something simple. Machine learning and AI models learn to recognize patterns in the data given to them, which they then use to make predictions.\nIt’s tough to say what we mean by “data” and “predictions,” because it could be pretty much anything:\nA model might learn that the word “love” is positive, what a coffee cup looks like, or where to find the total on a receipt. It’s practically limitless!\nIn this walkthrough we’re going to use a simple, relateable model to walk through what AI or machine learning models can do, how they are made, and how they might disagree with one another (even if they’re doing the same thing!). Along the way you’ll learn all about sentiment analysis, the ability of a computer to detect human emotion in pieces of text."
+  },
+  {
+    "objectID": "intro/models.html#introduction-to-sentiment-analysis",
+    "href": "intro/models.html#introduction-to-sentiment-analysis",
+    "title": "What is a model?",
+    "section": "Introduction to sentiment analysis",
+    "text": "Introduction to sentiment analysis\nLet’s say we’re Coca-Cola, and we release a new product called New Coke. How can we tell whether people like it or not?\nWell, we could go interview a lot of people about their thoughts on New Coke, but that doesn’t seem very modern! Instead, we’ll just download 1,000,000 tweets that mention New Coke and see if most of the tweets are positive or negative.\nBut how are we going to tell whether those tweets are positive or negative?\nWell, we could pay an army of interns to review all of those tweets, we’d rather spend that money on donuts. Instead, we’ll just have a computer tell us whether each tweet is positive or negative.\nThat’s sentiment analysis. A computer looking at some text and and telling us the emotion in it!\nIn this case, we’re going to be using a sentiment analysis model. While we could pay a person with a full-functioning understanding of language, irony, criticism, culture, etc, to rate the tweets, that’s just too much work. Instead we’ll use a simplified model that a computer can operate."
+  },
+  {
+    "objectID": "intro/models.html#performing-sentiment-analysis",
+    "href": "intro/models.html#performing-sentiment-analysis",
+    "title": "What is a model?",
+    "section": "Performing sentiment analysis",
+    "text": "Performing sentiment analysis\nWe’re going to be using a tool called Hugging Face to do sentiment analysis for us. If you can’t code, no worries! It’s super simple and we only care about the output.\nWe’ll start by performing sentiment analysis on a very simple, very easy statement: I love you (we borrowed the code from a blog post about how to do sentiment analysis in Python).\n\nfrom transformers import pipeline\n\nsentiment_pipeline = pipeline(\"sentiment-analysis\")\ndata = [\"I love you\"]\nsentiment_pipeline(data)\n\nNo model was supplied, defaulted to distilbert-base-uncased-finetuned-sst-2-english and revision af0f99b (https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english).\nUsing a pipeline without specifying a model name and revision in production is not recommended.\n\n\n[{'label': 'POSITIVE', 'score': 0.9998656511306763}]\n\n\nAccording to this tool, “I love you” is POSITIVE with a score of 0.9999! That seems pretty accurate and pretty fantastic.\nOne thing that doesn’t seem fantastic, though, is the warning we got:\n\nNo model was supplied, defaulted to distilbert-base-uncased-finetuned-sst-2-english and revision af0f99b (https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english). Using a pipeline without specifying a model name and revision in production is not recommended.\n\nWe don’t understand the details, but it seems like we should probably specify a model name."
+  },
+  {
+    "objectID": "intro/models.html#specifying-a-model",
+    "href": "intro/models.html#specifying-a-model",
+    "title": "What is a model?",
+    "section": "Specifying a model",
+    "text": "Specifying a model\nThe warning linked us to distilbert-base-uncased-finetuned-sst-2-english, which we can assume is a model. The name is crazy but we’ll accept it for now.\nTo learn how to specify a model name we search the internet a bit and find an answer:\nsentiment_pipeline = pipeline(\n    \"sentiment-analysis\",\n    model='YOUR MODEL NAME'\n)\nSo let’s try again, this time giving it the name of the suggested model.\n\nsentiment_pipeline = pipeline(\n    \"sentiment-analysis\",\n    model='distilbert-base-uncased-finetuned-sst-2-english'\n)\ndata = [\"I love you\"]\nsentiment_pipeline(data)\n\n[{'label': 'POSITIVE', 'score': 0.9998656511306763}]\n\n\nGreat, we got the same result and no error! While that’s certainly relaxing, it doesn’t seem like we learned anything new.\nNot learning new things makes us antsy, so we start poking around the Hugging Face site."
+  },
+  {
+    "objectID": "intro/models.html#differences-of-opinion",
+    "href": "intro/models.html#differences-of-opinion",
+    "title": "What is a model?",
+    "section": "Differences of opinion",
+    "text": "Differences of opinion\nWhile browsing the Hugging Face site, we quickly discover that there are all sorts of models for sentiment analysis with equally strange names. A few we see are:\n\ncardiffnlp/twitter-roberta-base-sentiment\nSeethal/sentiment_analysis_generic_dataset\nfiniteautomata/beto-sentiment-analysis\nsiebert/sentiment-roberta-large-english\n\nOut of that list we go ahead and pick twitter-roberta-base-sentiment to test out. The website says it’s been downloaded over a million times in the past month, and based on the name it seems to know something about Twitter (remember, we’re supposedly analyzing tweets!). It’s a perfect match!\nLet’s give replace the distilbert-base-uncased-finetuned-sst-2-english model with this new model and see what happens:\n\nsentiment_pipeline = pipeline(\n    \"sentiment-analysis\",\n    model='cardiffnlp/twitter-roberta-base-sentiment'\n)\ndata = [\"I love you\"]\nsentiment_pipeline(data)\n\n[{'label': 'LABEL_2', 'score': 0.9557049870491028}]\n\n\nAccording to the notes on the twitter-roberta-base-sentiment model page, LABEL_2 is positive. So it knows “I love you” is positive, genius!\nThat part sounds good, but there’s a catch: our last model said it was positive with a 0.9999 probability, while this one scores at 0.9557 instead.\nIs one of those responses more correct than the other?\n\nOne person might say “I love you” is just about as positive as you can possibly get. It’s the ultimate positive phrase, and deserves a nice high 0.9999 score.\nAnother person might say that even though “I love you” is supposed to be the ultimate positive phrase, what about “I really love you,” or “I really really really love you?” They’re even more positive than a simple “I love you” and deserve a higher score! Therefore 0.9557 is perfectly fine for a basic boring love proclamation.\nA third person says well, I’m not here to rank anyone’s love, let’s just all agree that they’re positive and ignore the score completely!\n\n\n\n\n\n\n\nAn important lesson\n\n\n\nJust like people can have different opinions, different models can disagree with each other.\nWhile some things are reasonably objective - love vs hate being positive vs negative, for example – other situations like edge cases, nuance or degree isn’t always so easy.\nWhy did they disagree? We’ll get to that soon!"
+  },
+  {
+    "objectID": "intro/models.html#limits-of-knowledge",
+    "href": "intro/models.html#limits-of-knowledge",
+    "title": "What is a model?",
+    "section": "Limits of knowledge",
+    "text": "Limits of knowledge\nWhile models will often disagree about details, there’s another situation that might come up: sometimes models are just plain ignorant!\nLet’s bring twitter-roberta some international French romance with Je t’adore.\n\nsentiment_pipeline = pipeline(\n    \"sentiment-analysis\",\n    model='cardiffnlp/twitter-roberta-base-sentiment'\n)\ndata = [\"Je t'adore\"]\nsentiment_pipeline(data)\n\n[{'label': 'LABEL_1', 'score': 0.6902912259101868}]\n\n\nA proclamation of love in most romantic language of them all, and twitter-roberta gives it a LABEL_1: neutral! We might not know anything about French, but we know that’s just plain wrong.\n\nFinding more models\nLuckily there are many many models, so chances are we can find one that speakes French!\nBrowsing the list of models that perform sentiment analysis, we come across twitter-xlm-roberta-base-sentiment, the most-downloaded sentiment model of all time. According to its bio page, this model understands:\n\nArabic\nEnglish\nFrench\nGerman\nHindi\nItalian\nSpanish\nPortuguese\n\nLet’s try it out with our romantic French line!\n\nsentiment_pipeline = pipeline(\n    \"sentiment-analysis\",\n    model='cardiffnlp/twitter-xlm-roberta-base-sentiment'\n)\ndata = [\"Je t'adore\"]\nsentiment_pipeline(data)\n\n[{'label': 'positive', 'score': 0.9099878072738647}]\n\n\nPerfect! …but how about our old friend English?\n\ndata = [\"I love you\"]\nsentiment_pipeline(data)\n\n[{'label': 'positive', 'score': 0.7866935729980469}]\n\n\nThe positive score isn’t as high as we might have hoped. But at least the model knows “I love you” in English is positive! Before we tracked down this multilingual model, our old model thought “Je t’adore” was neutral.\n\n\n\n\n\n\nAn important lesson\n\n\n\nModels only know what they’ve been taught: just like my cat can’t load the dishwasher, some models only know English and can’t judge French sentiment. When you start using a model, you’ll want to double-check that it understands what you’re asking it to work on."
+  },
+  {
+    "objectID": "intro/models.html#how-models-learn",
+    "href": "intro/models.html#how-models-learn",
+    "title": "What is a model?",
+    "section": "How models learn",
+    "text": "How models learn\nWhy does one model know French and another doesn’t? Or how do two models end up disagreeing about the same sentence? Just like people, models have different backgrounds.\nThere are two major ways that models learn: training and fine tuning. We’ll talk about them more in the next chapter, but for now we’ll provide a short overview.\n\nTraining\nTraining is the process of teaching a model from the very beginning. Think of the model like a little baby who needs to learn to walk and crawl and do all those things from absolute zero experience!\nIn the case of sentiment analysis, we might train the model by showing it examples of positive tweets and saying “this is a positive tweet!,” then showing it examples of negative tweets and saying “this is a negative tweet!”. Over time it learns the word “love” shows up more often in positive tweets, while “hate” shows up more often in negative tweets.\nIn our case: the model that understands French was also trained on French data instead of just English. And the two models that disagree about exactly how positive a sentence is might have just seen different examples of positive and negative tweets over their “lifetime,” which makes them come to different score conclusions.\nA problem with training is it can require a lot of data to teach a model effectively. Another option is fine-tuning.\n\n\nFine-tuning\nFine-tuning is taking an existing model and teaching it something new. It’s like finding someone who knows French and teaching them Spanish or German: they might not be perfect immediately, but some of the skills they know already probably transfer over (and they’re definitely better than a baby!).\nFor the trained-from-scratch model, once it learned that “love” was positive, that was the end of things. But not for the fine-tuned model! Since the model understands relationships between words, the model might also understand that “loving,” “like” and other similar words should increase the positive score.\nIf you notice the model names so far, they’re twitter-xlm-roberta-base-sentiment and distilbert-base-uncased-finetuned-sst-2-english. The first one is actually a fine-tuned version of a model called RoBERTa and the second is a fine-tuned version of a model called DistilBERT!\nThese original models are general-purpose language models that understand how language and words work, and the ones we’re using have been tweaked specifically to learn sentiment analysis.\n\n\n\n\n\n\nThey also both have BERT in their names because they’re based on a similar technology called Bidirectional Encoder Representations from Transformers - BERT.\n\n\n\n\n\nFinding training data\nHow do you find positive or negative tweets to train your dataset on? Finding data is one of the big challenges of training (or fine-tuning) machine learning or AI models.\nOne dataset I find amazing is Sentiment140, a dataset of 1.6 million tweets tagged as positive or negative. Did they pay hundreds of people to read through each tweet, marking it as positive or negative? No, they just looked for tweets with :) and :( and marked them as positive or negative!\nYou’ll often find sentiment models trained on movie reviews from IMDB or product reviews from Amazon. That’s because just like the last example, you don’t need to ask anyone whether it’s positive or negative before you feed it to the model: every review automatically comes with a score! You can be confident that one star is negative and 5 stars is positive (although expanding outside of that becomes more of an editorial decision).\nWe’ll discuss this much more in upcoming chapters."
+  },
+  {
+    "objectID": "intro/models.html#flavors-of-sentiment",
+    "href": "intro/models.html#flavors-of-sentiment",
+    "title": "What is a model?",
+    "section": "Flavors of sentiment",
+    "text": "Flavors of sentiment\nAs you browse the sentiment analysis models page you see all sorts of strangely-specific models:\n\nThe previous Twitter/multilinguage Twitter options\nOne for Amazon reviews\nFinancial news\nJapanese cyberbulling, climate, and a lot more…\n\nHow different are each of these models? Let’s take three of them and compare their results across a handful of sentences.\n\nimport pandas as pd\n\npd.options.display.max_colwidth = None\npd.options.display.float_format = '{:.3f}'.format\n\ndf = pd.DataFrame({'content': [\n    \"I love love love love this kitten\",\n    \"I hate hate hate hate this keyboard\",\n    \"I'm not sure how I feel about toast\",\n    \"Sales of bad candy are up 200% in the third quarter\",\n    \"Did you see the baseball game yesterday?\",\n    \"The package was delivered late and the contents were broken\",\n    \"Trashy television shows are some of my favorites\",\n    \"I'm seeing a Kubrick film tomorrow, I hear not so great things about it.\",\n    \"I find chirping birds irritating, but I know I'm not the only one\",\n]})\n\n# Twitter sentiment\nsentiment_pipeline = pipeline(model=\"cardiffnlp/twitter-xlm-roberta-base-sentiment\")\nresults = sentiment_pipeline(df.content.tolist())\nresults = pd.DataFrame(results).add_prefix('twitter-')\ndf = df.join(results)\n\n# Amazon review sentiment\nsentiment_pipeline = pipeline(model=\"LiYuan/amazon-review-sentiment-analysis\")\nresults = sentiment_pipeline(df.content.tolist())\nresults = pd.DataFrame(results).add_prefix('amazon-')\ndf = df.join(results)\n\n# Financial news sentiment\nsentiment_pipeline = pipeline(model=\"mrm8488/distilroberta-finetuned-financial-news-sentiment-analysis\")\nresults = sentiment_pipeline(df.content.tolist())\nresults = pd.DataFrame(results).add_prefix('finance-')\ndf = df.join(results)\n\ndf\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncontent\ntwitter-label\ntwitter-score\namazon-label\namazon-score\nfinance-label\nfinance-score\n\n\n\n\n0\nI love love love love this kitten\npositive\n0.889\n5 stars\n0.931\nneutral\n1.000\n\n\n1\nI hate hate hate hate this keyboard\nnegative\n0.937\n1 star\n0.619\nneutral\n1.000\n\n\n2\nI'm not sure how I feel about toast\nnegative\n0.605\n3 stars\n0.378\nneutral\n1.000\n\n\n3\nSales of bad candy are up 200% in the third quarter\nneutral\n0.524\n1 star\n0.454\npositive\n1.000\n\n\n4\nDid you see the baseball game yesterday?\nneutral\n0.849\n5 stars\n0.504\nneutral\n1.000\n\n\n5\nThe package was delivered late and the contents were broken\nnegative\n0.816\n1 star\n0.609\nneutral\n0.996\n\n\n6\nTrashy television shows are some of my favorites\npositive\n0.770\n5 stars\n0.815\nneutral\n1.000\n\n\n7\nI'm seeing a Kubrick film tomorrow, I hear not so great things about it.\nnegative\n0.418\n3 stars\n0.439\nneutral\n0.995\n\n\n8\nI find chirping birds irritating, but I know I'm not the only one\nnegative\n0.897\n3 stars\n0.462\nneutral\n0.992\n\n\n\n\n\n\n\nThe first thing we’ll notice is that it isn’t always just positive and negative options for the three models:\n\nTwitter multilanguage: positive, negative, neutral\nAmazon: 1-5 stars\nFinance: positive, negative, neutral\n\nWe might make an assumption that 1-2 stars is negative, 3 is neutral, and 4-5 is positive. Even then, the sentiment scores between the three models are rarely the same!\nThe most interesting is “Sales of bad candy are up 200% in the third quarter.” This sentence is neutral to the Twitter sentiment model, but is the only positive sentence for the financial model! Thanks to the power of fine-tuning, everything the finance model might have once known about the beauty of the world has been discarded in favor of sales sales sales!\n\n\n\n\n\n\nAn important lesson\n\n\n\nWhoever built the model is in control of what the model thinks, and the model only knows what it’s been shown. As much as we as humans might think loving a kitten is a positive thing, it isn’t the case for a model that only knows about finance!"
+  },
+  {
+    "objectID": "intro/models.html#labels-and-text-classification",
+    "href": "intro/models.html#labels-and-text-classification",
+    "title": "What is a model?",
+    "section": "Labels and text classification",
+    "text": "Labels and text classification\nThe Amazon review model showed us something interesting: sentiment analysis doesn’t need to explicitly be about sentiment. In the same way that a model can associate words with being a positive or negative tweet, it could also rate it as one, two, three, four or five stars.\nAnd to be honest with you: it goes far beyond that. You can train a model to put a piece of text into any sort of categories, from scanning for toxic comments online to determining whether a legislative bill is about gun control.\nSentiment analysis is just one tiny subset of text classification models, which are (predictably) about putting classifying pieces of text. Some examples of text classification models from Hugging Face:\n\npapluca/xlm-roberta-base-language-detection to determine the language of a piece of text\nunitary/toxic-bert to detect toxic content online\nroberta-base-openai-detector to test whether a document was written by AI\nyiyanghkust/finbert-fls to examine forward-looking remarks in financial statements\n\nWhile sentiment analysis has pretty limited use cases for us (sorry Coca-Cola!), text classification as a whole opens up a wide, wide world of opportunities. In the next section we’ll look at how to fine-tune our own text classifier and how the modern methods contrast with the hand-crafted machine learning techniques of the past."
+  },
+  {
+    "objectID": "intro/index.html",
+    "href": "intro/index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "It probably makes sense to know a little bit of the fundamentals of AI and machine learning before you jump headfirst into using it! While I don’t think the math or specific theories are very useful, you should at least know the vocabulary and have a vague idea of how these systems fit together.\nIn this section we’ll start by looking at what a model is, the most fundamental aspect of AI and machine learning. Every time you talk to ChatGPT or ask DALL-E for an image you’re actually talking to a model!\nAfter testing out a few different pre-existing models, we’ll move on to how we can build our own models through training (or, more realistically: fine-tuning others’ more powerful models). This will also reveal the shortcomings of these tools, along with the difference between the older custom machine learning models and the newer “black box” AI-driven ones.\nFinally, we’ll look at… I’m not sure how we’re dividing this up yet, honestly. But we’ll definitely have three sections!\nSo let’s do this."
+  },
+  {
+    "objectID": "intro/fine-tune-model.html",
+    "href": "intro/fine-tune-model.html",
+    "title": "Training and fine-tuning models",
+    "section": "",
+    "text": "Before a model can make any decisions for you, it needs to be trained on how to make those decisions.\nAs we talked about in the last section, there are two approaches to teaching your model:\nWe’ll start by looking at how people used to do it, and now look at the insanely simple drag-and-drop ways you can do it nowadaays."
+  },
+  {
+    "objectID": "intro/fine-tune-model.html#how-training-works",
+    "href": "intro/fine-tune-model.html#how-training-works",
+    "title": "Training and fine-tuning models",
+    "section": "How training works",
+    "text": "How training works\n\nThe olden days of machine learning\nBack in the good old days of writing fun investigative machine learning algorithms, fine-tuning models was out of reach: you’d pretty much always plan out an algorithm yourself to dig through documents or recognize members of Congress.\nYou’d have to make decisions like: what kind of algorithm are we using? The algorithm is the baseline of our model, and determines exactly how it works. Maybe we’d use a random forest? Maybe naive Bayes or a support vector machine? You might not know the difference, but you’d notice when know one did a better job than the other!\n\nSpeaking honestly, you’d probably just try them all and use the one that performed the best, not really caring about the why.\n\nBeyond picking the fundamentals of your model, you’d also need to make decisions about how your data was pre-processed before it was tossed in. You might make decisions like:\n\nWould you remove accents like coöperation and café?\nWould you standardized fish, fishes, and fishing to count as the same word?\nShould you keep your image in color or is greyscale going to work better?\n\nWhile these sorts of choices can certainly play a role in building a model in the current world, you rarely have to do that any more. We’ve been freed from it!\n\nBefore we get too far, I just want to say I love traditional machine learning models. Knowing what’s going into the system, making a million little tweaks, and feature-engineering your way to high heaven is a great thing.\nAnd as a secret bonus, traditional machine learning will oftentimes surpass AI-driven models with a heck of a lot less computational work.\nThe problem is all those tiny little decisions require technical know-how that raise the barrier to entry to these skills. The approach we take below will often reach 90% of the way there with 2% of the effort!\n\n\n\nFine tuning models\nAs we explained in the last section, training a model from scratch is like teaching a baby to speak. What if we could instead build from a base that was a little bit more advanced?\nMaybe we could start with something that knows a little bit of English or French, maybe it understands what a circle is or what a tree looks like. All we’d need is to give it a little guidance oh how to use those skills for our problem, instead of home-schooling it into adulthood.\nThis is the process of fine-tuning, and it’s how the majority of AI and machine learning is done these days. Megacorps like Facebook, Google and Microsoft have shoveled the contents of the internet into gigantic, powerful models, burning an incredible amount of money, time, and electricity to train them in ways that we could never think of doing on our home computer.\nThese models know all kinds of things, and by leveraging them we’ve skipped past starting with a baby and gone to a fully-functioning adult!\n\n\n\n\n\n\nThis is probably the right place to say: yes, this is one of the reasons bias exists in these models. Being a fully-functioning adult doesn’t necessarily mean you’re always right, or your ideas make sense!\n\n\n\nTo fine-tune the model, you show the model examples of what you want it to do. It can be practically anything:\n\nPositive tweets vs negative tweets\nPieces of legislature about the environment vs healthcare vs taxes vs policing\nSlides with tumors vs no tumors\nPhotos with a box drawn around every single tree\n\nThanks to the beauty of machine learning, the model leverages its existing abilities to learn how to complete your task. Whether it’s categorizing documents or scoring tumors, that’s it!\nNot all models are available for fine-tuning, though.\n\nSome models are held by the companies that produce them. They write papers about them but don’t release anything.\nOther models are held by the companies that produce them, but are available for fine-tuning through some sort of “give us money and we’ll give you access” interface\nStill other models exist freely on the internet, able to be downloaded and fine-tuned\n\nWe’re mostly concerned with the last bit here. And the best place to find those models is Hugging Face."
+  },
+  {
+    "objectID": "intro/fine-tune-model.html#lets-fine-tune-a-model",
+    "href": "intro/fine-tune-model.html#lets-fine-tune-a-model",
+    "title": "Training and fine-tuning models",
+    "section": "Let’s fine-tune a model!",
+    "text": "Let’s fine-tune a model!\nWe’re going to reproduce the research that’s (partially) behind Texty’s Leprosy of the land piece on illegal amber mines in Ukraine.\nFrom their description of the project:\n\nIncreased world prices for amber led to illegal mining for this gemstone in North Western part of Ukraine. The total area of region with close-to-surface deposits of amber is about 70,000 km2. Number of images with good enough resolution needed to cover this area is about 450,000. To process such amount of information we developed XGBoost and ResNet based classifier, trained it with initial ground-truth images with traces of amber mining and created most complete interactive map of this phenomena as of time of publishing in March, 2018 [1].\n\nYou can find their methodology here, a simpler writeup here, or a reproducible walkthrough on Google’s infrastructure from Google News Initiative.\nOur goal is to quickly fine-tune a model to reproduce the story. You’re going to be shocked at how easy it is.\n\nThe problem\nWith a collection of satellite imagery, we need to find pictures like those below.\n\n\n\nExample of amber mines\n\n\nSee those little round things? Those are illegal amber mines. While we could spend nights and weekends scrolling through image after image looking for those little round bits, a computer is going to do a much better job of it. Specifically speaking, a fine-tuned computer vision model is going to do a better job of it.\nFeel free to download the images here. It’s a subset of the much larger selection of well over a thousand images that the Google News Initiative course used.\n\n\nCreate our model\nWe’re going to head on over to Hugging Face’s AutoTrainer, a tool to allow users to easily fine-tune existing models. Once you’re there, create an account and log in.\n\n\n\n\n\n\nWe’re doing this using Hugging Face, but there are a million tools that you can use to automatically train or fine-tune models out there. Hugging Face is a great place to do it because it’s a platform dedicated to models. Unlike something like Google’s model-training tool, Hugging Face has a ton of infrastructure around it to allow you to test and use the model in a lot of convenient (and social!) ways.\nAlso: why are we using a tool instead of coding? Because the whole point of this is it doesn’t matter how the model is made. It’s fine that it’s a black box, it’s fine that we don’t know what’s going on under the surface or where it came from, what matters is focusing on how we use it. Being able to design a model from scratch in PyTorch or whatever doesn’t prevent you from being irresponsible with it!\n\n\n\n\nCreate a project\nAfter you’re logged in, click the New Project button.\n\n\n\nCreate a new project\n\n\nCreate a new project, selecting Image Classification since we’re attempting to put images into categories. If we were attempting to classify tweets, we’d click Text and then one of the Text Classification options.\n\n\n\nEnter in the details\n\n\nAn important part of this screen is the Model choice option. Do you know anything about the different models we could fine-tune for this project? Are those “XGBoost” and “ResNet” things mentioned above by Texty relavant? Does RoBERTa from the last section speak images?\nYou don’t have to worry, because Hugging Face knows we don’t know, so it just picks for us. In the same way that traditional machine learning meant running a few different algorithms to see which one worked best - SVM vs logistic regression vs random forest – Hugging Face will pit a few contenders against each other and let us pick which one we feel performed the best!\n\n\nUploading our data\nAfter you’ve created the new project, you’ll drag the two folders of images into the drop zone. There are 250 images in each folder because Hugging Face allows us to train on 500 images for free, and keeping a balance between yes/no amber mines lets the model get a good idea of what each category looks like.\n\n\n\nUpload your images\n\n\n\n\n\nDone uploading\n\n\nThat’s your data prep! Once it’s done uploading you can click the go to trainings button.\n\n\n\nGo to training\n\n\n\n\nTraining our models\nAutoTrain now gives us a few options on what we want to do: we’re fine trying out 5 different models (expanding that probably won’t change much), and we’re just within the 500-image limit.\n\nAs much as I love it, Hugging Face is super expensive if you’re going over the limit. In that case I would recommend fine-tuning on Google Colab instead. It isn’t too bad if you know how to work with Python!\n\nIf we were training a model from scratch instead of fine-tuning, 500 images might not be enough! But thanks to the fact that we’re standing on the shoulders of an existing model that knows about shapes and colors, we should be ok. Start that training!\n\n\n\nModels finished fine-tuning\n\n\nWait a bit – have fun watching the models compete – and soon you’ll have five fine-tuned models all ready for you.\n\n\n\nModels finished fine-tuning\n\n\n\n\nEvaluating model performance\nMany of our models scored 95%, how exciting! But when we click through to the model, we get a lot more numbers to pay attention to.\n\n\n\nModel performance\n\n\nI’m going to give you the numbers for a few of the models below:\n\n\n\nname\nwelcome-panther\npoised-zebra\nfast-wasp\n\n\n\n\nModel base\nbeit\nvit\nswin\n\n\nLoss\n0.073\n0.195\n0.144\n\n\nAccuracy\n0.950\n0.950\n0.950\n\n\nPrecision\n0.979\n0.941\n0.979\n\n\nRecall\n0.92\n0.960\n0.920\n\n\nAUC\n0.999\n0.984\n0.989\n\n\nF1\n0.948\n0.950\n0.948\n\n\n\nThe big reason accuracy might not be important is if you have “imbalanced” data. Let’s say we had 90 images of no mines and 10 images of mines. I could guess not a mine every single time and still come away with a 90% accuracy score! We need some way to punish certain kinds of wrong guesses.\nPrecision and recall are measures that talk specifically about the ways the model’s predictions can be wrong. The somewhat technical explanation:\n\nHigher precision means fewer false positives, i.e.. fewer times a non-mine is classified as a mine.\nHigher recall means fewer false negatives, i.e. fewer times a mine is classified as a non-mine.\n\nOr, alternatively:\n\nHigh precision means “if I say YES it’s a mine, it’s definitely a mine.” Low precision means “if I say YES it’s a mine… maybe it isn’t.”\nHigh recall means “I guessed most of the mines,” while low recall means “I missed some of the mines.”\n\nThis page has a great decription of how tests can “cheat” and get misleading high scores, I highly recommend giving it a read (mostly the last third or so). But to get to the point:\nWhile all of our models have an accuracy of 95%, welcome-panther has a higher precision and lower recall, while poised-zebra has a lower precision and higher recall. Which metric one is better?\nIn our situation, we’ll be manually reviewing the mines and we don’t want to miss any amber mines. It’s better for us to have a non-mine categorized as a mine (we’ll remove it) instead of a mine categorized as a non-mine (we’ll never notice it). As a result, we want a higher recall – it might give us false positives, but we’ll deal with it.\nWe could also use the F1 score, which attempts to be a holistic store that balances all types of misclassifications. In this case our pick of poised-zebra with a score of 0.950 slightly beats out welcome-panther’s score of 0.948, so it agrees with our decision!\n\n\n\nUsing our model\nNext I use the settings page to rename and move our model. Now that I’ve made it publish, you can find it at wendys-llc/amber-mines You might want to keep yours private, but I wanted you to be able to give mine a try!\n\nNow I’ll deploy the model as a Gradio app for some nice fun playing around.\n\n\n\nAnd then we’re done!\n\n\nTry it out\nYou can find the finished app here and try it out below.\nAm I cheating by using examples that it was trained on? Absolutely, but you get the idea.\n\n\nWere you to actually want to use this for real, I would recommend taking a look at the Hugging Face course"
+  },
+  {
+    "objectID": "diy/index.html",
+    "href": "diy/index.html",
+    "title": "Extending and customizing overview",
+    "section": "",
+    "text": "Let’s be honest, I got lazy."
+  },
+  {
+    "objectID": "diy/index.html#coming-soon",
+    "href": "diy/index.html#coming-soon",
+    "title": "Extending and customizing overview",
+    "section": "",
+    "text": "Let’s be honest, I got lazy."
+  },
+  {
+    "objectID": "images/semantic-segmentation.html",
+    "href": "images/semantic-segmentation.html",
+    "title": "Semantic Segmentation: Finding stuff in photos",
+    "section": "",
+    "text": "There are a handful of different ways that computers can look at images, and one of the options is “stuff” versus “things.” Semantic segmentation can be used to find “stuff,” the number of pixels dedicated to people, cars, vegetation, etc in an image."
+  },
+  {
+    "objectID": "images/semantic-segmentation.html#use-cases",
+    "href": "images/semantic-segmentation.html#use-cases",
+    "title": "Semantic Segmentation: Finding stuff in photos",
+    "section": "Use cases",
+    "text": "Use cases\nSemantic segmentation is great at answering the question of “how much land is covered by XXX?” when using satellite imagery. In the example below, the model has been trained to search for vegetation."
+  },
+  {
+    "objectID": "images/semantic-segmentation.html#try-it-out",
+    "href": "images/semantic-segmentation.html#try-it-out",
+    "title": "Semantic Segmentation: Finding stuff in photos",
+    "section": "Try it out",
+    "text": "Try it out\nHere’s a great example that identifies vegetation. Scroll down to click the examples."
+  },
+  {
+    "objectID": "images/semantic-segmentation.html#vqa-models",
+    "href": "images/semantic-segmentation.html#vqa-models",
+    "title": "Semantic Segmentation: Finding stuff in photos",
+    "section": "VQA Models",
+    "text": "VQA Models\n\nPopular models\nOn the Hugging Face models list, semantic segmentation is called “image segmentation”. The most popular models are CLIPSeg or Facebook’s MaskFormer.\n\n\nState of the art\nIf you poke around paperswithcode, accuracy really depends on the test you’re working from. It’s everything from around 60% on ADE20K val to almost 90% on Cityscapes.\nThe state of the art models appear to be InternImage-H and BEiT-3."
+  },
+  {
+    "objectID": "images/index.html",
+    "href": "images/index.html",
+    "title": "Image models overview",
+    "section": "",
+    "text": "Image classification\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nObject Detection: Finding things in photos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSemantic Segmentation: Finding stuff in photos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVQA: Asking questions about pictures\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "images/image-classification.html",
+    "href": "images/image-classification.html",
+    "title": "Image classification",
+    "section": "",
+    "text": "Image classification allows you to put images into category. Typically these are yes/no questions.\n\nDoes this satellite image show illegal mining operations?\nDoes this photograph have a car in it?\nDoes this x-ray show a broken bone?\n\nCustom image classifiers are simple to build yourself! You can visit the build your own image classifier page for more details.\nImage classifiers are on the simpler end of the visual analysis spectrum. More advanced models can show exactly where things are in an image (e.g. vegetation, swimming pools), or segment out those individual things (e.g. cars, people). Keep reading to learn more about semantic segmentation and object detection."
+  },
+  {
+    "objectID": "images/vqa.html",
+    "href": "images/vqa.html",
+    "title": "VQA: Asking questions about pictures",
+    "section": "",
+    "text": "Visual Question Answering (VQA) is a way to ask questions about pictures! If we want to get technical, it isn’t actually an image model: it’s a multimodal model that understands both images and text! The text part comes in when understanding what your question means."
+  },
+  {
+    "objectID": "images/vqa.html#use-cases",
+    "href": "images/vqa.html#use-cases",
+    "title": "VQA: Asking questions about pictures",
+    "section": "Use cases",
+    "text": "Use cases\nNews outlets had a nasty habit of using pictures of Asian people in stories about COVID, even if the stories were 100% about the United States. During a talk about AI editors I showed how you could run these images through a VQA and ask things like “is there an Asian person in this image?” or “is this a photograph of Chinatown?”"
+  },
+  {
+    "objectID": "images/vqa.html#try-it-out",
+    "href": "images/vqa.html#try-it-out",
+    "title": "VQA: Asking questions about pictures",
+    "section": "Try it out",
+    "text": "Try it out\nThis example allows you to compare several different question-answering models."
+  },
+  {
+    "objectID": "images/vqa.html#vqa-models",
+    "href": "images/vqa.html#vqa-models",
+    "title": "VQA: Asking questions about pictures",
+    "section": "VQA Models",
+    "text": "VQA Models\n\nPopular models\nIf you look at the Hugging Face models page VQA isn’t nearly as popular as text-based models. The BLIP model from Salesforce is a popular one, though, as is ViLT.\n\n\nState of the art\nIf you poke around paperswithcode, the most popular evaluation is VQA v2 test-dev. Most models score a nudge above 80%.\nYou can see the kinds of questions the test asks on the VQA v2 teaser page."
+  },
+  {
+    "objectID": "images/instance-segmentation.html",
+    "href": "images/instance-segmentation.html",
+    "title": "Object Detection: Finding things in photos",
+    "section": "",
+    "text": "There are a handful of different ways that computers can look at images, and one of the options is “stuff” versus “things.” Instance segmentation can be used to find “things:” each individual person, car, tree, etc in an image."
+  },
+  {
+    "objectID": "images/instance-segmentation.html#use-cases",
+    "href": "images/instance-segmentation.html#use-cases",
+    "title": "Object Detection: Finding things in photos",
+    "section": "Use cases",
+    "text": "Use cases\nInstance segmentation is great at answering the question of “is XXXX in this photo?” You can think of it as an image classification model with a little bit more nuance.\nYou might want to filter thousands of photos to only show the ones that include a car or an elephant, or count the number of people in the image of a crowd.\nInstance segmentation also shows you where in the image something is, which may or may not be useful."
+  },
+  {
+    "objectID": "images/instance-segmentation.html#try-it-out",
+    "href": "images/instance-segmentation.html#try-it-out",
+    "title": "Object Detection: Finding things in photos",
+    "section": "Try it out",
+    "text": "Try it out\nThe examples are not as simple as I’d like, but we’ll go with this one for now. Be sure to scroll down to click the examples!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Normal AI",
+    "section": "",
+    "text": "This site is an attempt at a down-to-earth explanation of modern AI and machine learning. It isn’t all just ChatGPT! We’re here to learn about what AI and machine learning models are, how to use them, and get a little inspiration from what’s possible."
+  },
+  {
+    "objectID": "index.html#frequently-asked-questions",
+    "href": "index.html#frequently-asked-questions",
+    "title": "Normal AI",
+    "section": "Frequently Asked Questions",
+    "text": "Frequently Asked Questions\n\nWhat is the difference between machine learning and AI?\nThere’s a legitimate answer to this, but generally speaking artificial intelligence is just machine learing with a better marketing team behind it.\nSo is there an actual technical differentiation to be made? Absolutely! Does this difference have any sort of meaningful impact on literally anything? Absolutely not!"
+  },
+  {
+    "objectID": "index.html#is-ai-going-to-steal-all-of-our-jobs",
+    "href": "index.html#is-ai-going-to-steal-all-of-our-jobs",
+    "title": "Normal AI",
+    "section": "Is AI going to steal all of our jobs?",
+    "text": "Is AI going to steal all of our jobs?\nIn the long run: sure, why not! Hopefully it will support universal healthcare and free school lunches while it’s cementing its power structures."
+  },
+  {
+    "objectID": "index.html#how-good-does-this-need-to-be-before-i-use-it-for-____",
+    "href": "index.html#how-good-does-this-need-to-be-before-i-use-it-for-____",
+    "title": "Normal AI",
+    "section": "How good does this need to be before I use it for ____?",
+    "text": "How good does this need to be before I use it for ____?\nYou aren’t going to get a number for this (at least not from me).\nInstead of focusing on metrics, look at what bad things happen if you’re wrong and plan accordingly. The downsides of a bad AI-generated BuzzFeed quiz is much less daunting than a bad AI-generated medical diagnosis. Design for social robustness.\n\nDoesn’t GPT-4 and the other new stuff surpass all of this?\nA few responses to this:\n\nSigh, yes. At least to a degree.\nMost of these fancy all-powerful multimodal models are currently only found behind paywalls and locked up by mega-corporations (although that definitely won’t last)\nThe more basic, one-task models you’ll find here are usually lighter, faster, and can run easily on your own computer\n\nIf you poke around in the “custom” section you’ll see how we can use GPT etc to speed up the training process of our models, then letting our model take over. It’s like hiring a college kid to tutor a middle schooler."
+  },
+  {
+    "objectID": "audio/index.html",
+    "href": "audio/index.html",
+    "title": "Audio models overview",
+    "section": "",
+    "text": "Transcription\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoise removal\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "audio/transcription.html",
+    "href": "audio/transcription.html",
+    "title": "Transcription",
+    "section": "",
+    "text": "Transcription is one of the most useful techniques to apply to audio. It’s also fiendishly difficult, although models have gotten much better in recent years."
+  },
+  {
+    "objectID": "audio/transcription.html#use-cases",
+    "href": "audio/transcription.html#use-cases",
+    "title": "Transcription",
+    "section": "Use cases",
+    "text": "Use cases\nIf speech can be accurately converted into text, everything we can do with text we can now do with speech."
+  },
+  {
+    "objectID": "audio/transcription.html#try-it-out",
+    "href": "audio/transcription.html#try-it-out",
+    "title": "Transcription",
+    "section": "Try it out",
+    "text": "Try it out"
+  },
+  {
+    "objectID": "audio/transcription.html#models",
+    "href": "audio/transcription.html#models",
+    "title": "Transcription",
+    "section": "Models",
+    "text": "Models\n\nPopular models\nWhisper is without a doubt the most popular transcription model at the moment. And not only that: it’s really really good. It supports a plethora of languages, too.\nThe only thing to note is that the Whisper model comes in different sizes: the larger the model, the better it is. But larger models are also slower, and require more resources to run, which potentially means it costs more. You’ll need to figure out what’s best for you based on your use case and the quality of your source audio.\n\nYou might also look at noise removal before sending your audio to be transcribed.\n\n\n\nState of the art\nI should look this up once I’m not on a plane."
+  },
+  {
+    "objectID": "existing-models.html",
+    "href": "existing-models.html",
+    "title": "Using existing models",
+    "section": "",
+    "text": "You can interact with existing models in all sorts of ways! You might…\nIn this section we’ll explain what AI and machine learning models are capable of, show you a quick interactive demo of each, and give you snippets of code to make them come alive on your own.\nWhat type of models are you most interested in?"
+  },
+  {
+    "objectID": "existing-models.html#text-based-models",
+    "href": "existing-models.html#text-based-models",
+    "title": "Using existing models",
+    "section": "Text-based models",
+    "text": "Text-based models\nText-based models can classify and extract information out of documents.\n\n\n\n\n\n\n\n\nText models overview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nText classification\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDetecting people, places, things and more\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsking questions about documents\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDocument similarity\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsking PDFs questions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "existing-models.html#image-based-models",
+    "href": "existing-models.html#image-based-models",
+    "title": "Using existing models",
+    "section": "Image-based models",
+    "text": "Image-based models\nImage-based models can analyze objects that appear in photographs and satellite imagery.\n\n\n\n\n\n\n\n\nImage models overview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImage classification\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nObject Detection: Finding things in photos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSemantic Segmentation: Finding stuff in photos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVQA: Asking questions about pictures\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "existing-models.html#audio-models",
+    "href": "existing-models.html#audio-models",
+    "title": "Using existing models",
+    "section": "Audio models",
+    "text": "Audio models\nAudio models can translate and transcribe audio from a multitude of languages.\n\n\n\n\n\n\n\n\nAudio models overview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTranscription\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoise removal\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "existing-models.html#video-models",
+    "href": "existing-models.html#video-models",
+    "title": "Using existing models",
+    "section": "Video models",
+    "text": "Video models\nVideo models can wrangle video in unimaginable ways (yes, this is an awful description, but they get pretty wild prettyy fast).\n\n\n\n\n\n\n\n\nVideo models overview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "text/asking-documents-questions.html",
+    "href": "text/asking-documents-questions.html",
+    "title": "Asking questions about documents",
+    "section": "",
+    "text": "Question answering has a lot of sub-sections, but the idea in general is that you have a document and ask the model a question to be answered from it.\nGetting answers from documents isn’t a fully-solved problem yet! Most of the issues deal with the length of the input – while getting answers from article-sized texts is pretty simple, larger documents are more difficult to extract answers from, and often need to be broken up into smaller pieces."
+  },
+  {
+    "objectID": "text/asking-documents-questions.html#use-cases",
+    "href": "text/asking-documents-questions.html#use-cases",
+    "title": "Asking questions about documents",
+    "section": "Use cases",
+    "text": "Use cases\nYou might use question answering to extract specific information that you know is contained inside of documents, or get answers from an existing knowledge base. It’s also one way to simplify text down into something useable."
+  },
+  {
+    "objectID": "text/asking-documents-questions.html#try-it-out",
+    "href": "text/asking-documents-questions.html#try-it-out",
+    "title": "Asking questions about documents",
+    "section": "Try it out",
+    "text": "Try it out\nThis Hugging Face space is a good example of document Q&A. Click the paragraph under “Examples” to see how it works."
+  },
+  {
+    "objectID": "text/asking-documents-questions.html#models",
+    "href": "text/asking-documents-questions.html#models",
+    "title": "Asking questions about documents",
+    "section": "Models",
+    "text": "Models\n\nPopular models\nMost language models can do a decent job at answering questions from documents. You can find plenty under Question Answering on Hugging Face (not to be confused with document question answering, which is more about structured PDFs like invoices).\nIf you’re doing something domain-specific, you might want to fine-tune your models. For example LEGAL-ROBERTA is specifically for legal documents.\n\n\nState of the art\nQuestion answers on Papers with Code has most models inching up towards (or beyond) 80-90%. Most every large language model does a great job at this: PaLM, GlaM, LLaMA, etc. Most are available through APIs or specialized access, though, not as free and downloadable (…although LLaMA did get leaked and can absolutely be found, just not on HF)."
+  },
+  {
+    "objectID": "text/document-similarity.html",
+    "href": "text/document-similarity.html",
+    "title": "Document similarity",
+    "section": "",
+    "text": "Document similarity or sentence similarity can be used to find pieces of text that are related to one another. Through a bit of magic, each document is transformed into 384 dimensions, which can be used to find ones that are about the same topics. The dimensions don’t mean anything, but you can read more about word embeddings here."
+  },
+  {
+    "objectID": "text/document-similarity.html#use-cases",
+    "href": "text/document-similarity.html#use-cases",
+    "title": "Document similarity",
+    "section": "Use cases",
+    "text": "Use cases\nWhen searching across email dumps or pieces of legislation, document similarity can make it easy to find related texts. In some ways it’s a simple alternative to training and using a classifier.\nThe idea of searching for similar concepts or documents as opposed to specific phrases is called “semantic search.”\nModern document similarity models can even match across languages! If you search for “I am embezzling funds please don’t tell anyone” in English, it can pull up documents in non-English languages."
+  },
+  {
+    "objectID": "text/document-similarity.html#try-it-out",
+    "href": "text/document-similarity.html#try-it-out",
+    "title": "Document similarity",
+    "section": "Try it out",
+    "text": "Try it out\nCouldn’t find a good example yet! For now you can use this colab notebook"
+  },
+  {
+    "objectID": "text/document-similarity.html#models",
+    "href": "text/document-similarity.html#models",
+    "title": "Document similarity",
+    "section": "Models",
+    "text": "Models\n\nPopular models\nYou can use sentence-transformers/all-MiniLM-L6-v2 for sentence similarity, but it only works with English (similarly, shibing624/text2vec-base-chinese only works with Chinese). If you scroll around on the sentence similarity page you’ll eventually find a sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2, a multi-lingual model"
+  },
+  {
+    "objectID": "text/named-entity-recognition.html",
+    "href": "text/named-entity-recognition.html",
+    "title": "Detecting people, places, things and more",
+    "section": "",
+    "text": "Named entity recognition (NER) is also known as token classification or span classification. Instead of classifying an entire document, it pulls out bits and pieces you might be interested in: names, organization names, places, money, etc."
+  },
+  {
+    "objectID": "text/named-entity-recognition.html#use-cases",
+    "href": "text/named-entity-recognition.html#use-cases",
+    "title": "Detecting people, places, things and more",
+    "section": "Use cases",
+    "text": "Use cases\nNER could be used to pull out the names of everyone mentioned in an email thread or quoted in a newspaper article."
+  },
+  {
+    "objectID": "text/named-entity-recognition.html#try-it-out",
+    "href": "text/named-entity-recognition.html#try-it-out",
+    "title": "Detecting people, places, things and more",
+    "section": "Try it out",
+    "text": "Try it out"
+  },
+  {
+    "objectID": "text/named-entity-recognition.html#models",
+    "href": "text/named-entity-recognition.html#models",
+    "title": "Detecting people, places, things and more",
+    "section": "Models",
+    "text": "Models\n\nPopular Models\nHugging Face has plenty of NER models listed under “token classification”. The most popular is StanfordAIMI/stanford-deidentifier-base, but it’s just for medical work! You’ll probably have better luck with dslim/bert-base-NER or Davlan/bert-base-multilingual-cased-ner-hrl.\n\n\nState of the art\nNamed entity recognition on Papers with Code shows that pretty much everything sits in the 90’s, so I wouldn’t worry too much about what model you pick.\nIf you’re looking at a model with different size options, larger ones often perform much better at NER. For example, many spaCy tutorials suggest you use en_core_web_sm which is small. Instead, you probably want en_core_web_lg which has a lot more data in it. The model name should make it obvious as to whether it’s a smaller version of a “full” model."
+  },
+  {
+    "objectID": "text/index.html",
+    "href": "text/index.html",
+    "title": "Text models overview",
+    "section": "",
+    "text": "Text classification\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDetecting people, places, things and more\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsking questions about documents\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDocument similarity\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsking PDFs questions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "text/text-classification.html",
+    "href": "text/text-classification.html",
+    "title": "Text classification",
+    "section": "",
+    "text": "Text classification is one of the most basic yet most useful machine learning methods: it’s the proces of putting pieces of text into categories.\nA “category” can be practically anything:"
+  },
+  {
+    "objectID": "text/text-classification.html#use-cases",
+    "href": "text/text-classification.html#use-cases",
+    "title": "Text classification",
+    "section": "Use cases",
+    "text": "Use cases\nAt least in journalism, the most common use case for text classification is when we don’t want to read ten billion documents, we only want to see the ones we’re likely interested in. Maybe there was a big leak of emails, maybe we need to dig through a hefty amount of legislation, maybe we have a bunch of public comments on a government policy. It works like this:\n\nWe read a portion of them, sorting them into two categories: YES we’re interested in this one, or NO we’re not.\nWe feed it into the machine, the machine learns the difference between the two.\nWe show it the rest of the documents, it sorts them into YES and NO piles for us."
+  },
+  {
+    "objectID": "text/text-classification.html#try-it-out",
+    "href": "text/text-classification.html#try-it-out",
+    "title": "Text classification",
+    "section": "Try it out",
+    "text": "Try it out"
+  },
+  {
+    "objectID": "text/text-classification.html#models",
+    "href": "text/text-classification.html#models",
+    "title": "Text classification",
+    "section": "Models",
+    "text": "Models\n\nPopular models\nAny modern language model works fine for this. You can find plenty on Hugging Face, they’ll typically be something with BERT or LM in the name.\n\n\nState of the art\nThe majority of the time our text classifiers are going to be fine-tuned versions of common large language models. The capability of our classifier isn’t going to be restrained by the model we choose – they’re all pretty good! – but rather by how much of our dataset we manually categorize. The more the better!\nTo learn more, check out building your own text classifier."
+  },
+  {
+    "objectID": "text/asking-pdfs-questions.html",
+    "href": "text/asking-pdfs-questions.html",
+    "title": "Asking PDFs questions",
+    "section": "",
+    "text": "Asking PDFs questions actually isn’t about text, it’s about images! Except… it’s kind of about text. And layout. And images. It’s complicated."
+  },
+  {
+    "objectID": "text/asking-pdfs-questions.html#use-cases",
+    "href": "text/asking-pdfs-questions.html#use-cases",
+    "title": "Asking PDFs questions",
+    "section": "Use cases",
+    "text": "Use cases\nWhen you’re working with semi-structured documents, like PDFs of receipts or invoices, there are often individual fields you need to pull out: totals, dates, locations, etc.\nIf you’re looking to pull out things like names, places, or legal rulings from a larger body of text, I recommend converting the PDF to text and using entity recognition instead."
+  },
+  {
+    "objectID": "text/asking-pdfs-questions.html#try-it-out",
+    "href": "text/asking-pdfs-questions.html#try-it-out",
+    "title": "Asking PDFs questions",
+    "section": "Try it out",
+    "text": "Try it out\nThis example of DocQuery is a great sample of asking a PDF a question. Be sure to click the examples!"
+  },
+  {
+    "objectID": "text/asking-pdfs-questions.html#models",
+    "href": "text/asking-pdfs-questions.html#models",
+    "title": "Asking PDFs questions",
+    "section": "Models",
+    "text": "Models\n\nPopular models\nLayoutLM is a common base, with microsoft/layoutlmv3-base being by far the most popular implementation. To get a look at a fine-tuned version, I might suggest impira/layoutlm-invoices.\n\n\nState of the art\nAsking PDFs questions falls under a few categories, but in this case we’ll go with “document layout analysis” on paperswithcode. There aren’t very many benchmarks, but Microsoft’s LayoutLMv3 is the top of at least one of them."
+  }
+]

@@ -1,0 +1,5 @@
+---
+title: "Build your own image classifier"
+subtitle: "Detect illegal amber mines in Ukraine"
+order: 2
+---

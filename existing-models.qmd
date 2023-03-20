@@ -1,0 +1,68 @@
+---
+title: "Using existing models"
+custom-header: ../assets/wizard.png
+listing: 
+  - id: text-models
+    contents: "text/*.qmd"
+    type: grid
+    filter-ui: false
+    sort-ui: false
+    max-description-length: 350
+  - id: video-models
+    contents: "video/*.qmd"
+    type: grid
+    filter-ui: false
+    sort-ui: false
+    max-description-length: 350
+  - id: audio-models
+    contents: "audio/*.qmd"
+    type: grid
+    filter-ui: false
+    sort-ui: false
+    max-description-length: 350
+  - id: image-models
+    contents: "images/*.qmd"
+    type: grid
+    filter-ui: false
+    sort-ui: false
+    max-description-length: 350
+---
+
+You can interact with existing models in all sorts of ways! You might...
+
+* Access them through an API, like OpenAI's GPT-3 or GPT-4
+* Interact using web chat or Discord, like [Midjourney](https://www.midjourney.com/) or [ChatGPT](https://chat.openai.com/chat)
+* Fork and customize them online, like the many examples on [https://huggingface.co/models](Hugging Face)
+* Download and run on your own, like [Stable Diffusion](https://github.com/AUTOMATIC1111/stable-diffusion-webui)'s web-ui
+
+In this section we'll explain what AI and machine learning models are capable of, show you a quick interactive demo of each, and give you snippets of code to make them come alive on your own.
+
+What type of models are you most interested in?
+
+## Text-based models
+
+[Text-based models](text/index.qmd) can classify and extract information out of documents.
+
+:::{#text-models}
+:::
+
+## Image-based models
+
+[Image-based models](images/index.qmd) can analyze objects that appear in photographs and satellite imagery.
+
+:::{#image-models}
+:::
+
+## Audio models
+
+[Audio models](audio/index.qmd) can translate and transcribe audio from a multitude of languages.
+
+:::{#audio-models}
+:::
+
+## Video models
+
+[Video models](video/index.qmd) can wrangle video in unimaginable ways (yes, this is an awful description, but they get pretty wild prettyy fast).
+
+:::{#video-models}
+:::

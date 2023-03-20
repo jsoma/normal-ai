@@ -1,0 +1,44 @@
+[data-bs-toggle="collapse"] {
+    font-weight: bold;
+}
+
+code.sourceCode {
+    font-size: 0.875em !important;
+}
+
+.cell-output table {
+    font-size: 0.75em;
+}
+
+/* tr > th:first-child {
+    display: none;
+} */
+
+.cell-output {
+    margin-bottom: 0;
+    padding: 0.4em;
+}
+
+.cell-output-stderr {
+    background-color: #ff808084;
+}
+
+.cell {
+    margin-bottom: 1rem;
+}
+
+.cell-output pre code {
+    white-space: pre-wrap;
+}
+
+.cell-output pre {
+    margin-bottom: 0;
+}
+
+.cell-code.sourceCode {
+    margin-bottom: 0;
+}
+
+.blank.level0, .row_heading.level0 {
+    display: none;
+}

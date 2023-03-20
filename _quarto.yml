@@ -1,0 +1,132 @@
+project:
+  type: website
+  output-dir: docs
+execute:
+  freeze: auto
+
+website:
+  title: "Normal AI"
+  twitter-card:
+    creator: "@dangerscarf"
+  open-graph: true
+  search: true
+  # reader-mode: true
+  repo-url: https://github.com/jsoma/normal-ai
+  site-url: https://normalai.org
+  repo-actions: [edit, issue]
+  page-navigation: true
+  navbar:
+    background: light
+    search: true
+    left:
+      - text: "Intro"
+        file: intro/index.qmd
+      - text: "Text"
+        file: text/index.qmd
+      - text: "Images"
+        file: images/index.qmd
+      - text: "Audio"
+        file: audio/index.qmd
+      - text: "Video"
+        file: video/index.qmd
+      - text: "Custom"
+        file: diy/index.qmd
+  sidebar:
+    style: docked
+    align: left
+    border: false
+    collapse-level: 2
+    contents:
+      - text: "Home"
+        file: index.qmd
+      - section: "Introduction"
+        contents:
+        - file: intro/index.qmd
+        - text: "What is a model?"
+          file: intro/models.qmd
+        - text: "Training a model"
+          file: intro/fine-tune-model.qmd
+      - section: "Existing models"
+        contents:
+        - text: "How to use"
+          file: existing-models.qmd
+        - section: "📝 Text"
+          contents:
+          - text/index.qmd
+          - text: "Classifying"
+            file: text/text-classification.qmd
+          - text: "Extracting people and organizations"
+            file: text/named-entity-recognition.qmd
+          - text: "Document similarity"
+            file: text/document-similarity.qmd
+          - text: "Asking PDFs questions"
+            file: text/asking-pdfs-questions.qmd
+          - text: "Asking documents questions"
+            file: text/asking-documents-questions.qmd
+        - section: "🖼️ Images"
+          contents:
+          - images/index.qmd
+          - text: "Classifying"
+            file: images/image-classification.qmd
+          - text: "Asking questions"
+            file: images/vqa.qmd
+          - text: "Counting things"
+            file: images/instance-segmentation.qmd
+          - text: "Measuring amounts"
+            file: images/semantic-segmentation.qmd
+        - section: "🔊 Audio"
+          contents:
+          - audio/index.qmd
+          - text: "Transcription"
+            file: audio/transcription.qmd
+          - text: "Noise removal"
+            file: audio/removing-noise.qmd
+        - section: "🎬 Video"
+          contents:
+          - video/index.qmd
+      - section: "Build your own"
+        contents:
+        - text: "Customization overview"
+          file: diy/index.qmd  
+        - text: "Text classifier"
+          file: diy/text-classification.qmd
+        - text: "Image classifier"
+          file: diy/image-classification.qmd
+        - text: "Exploring the possibilities"
+          file: diy/research.qmd
+        - text: "Custom tools"
+          file: diy/custom.qmd  
+  page-footer: 
+    border: false
+    background: dark
+    left: >
+      Find me at [jonathan.soma@gmail.com](mailto:jonathan.soma@gmail.com)
+      or [@dangerscarf](https://twitter.com/dangerscarf)
+    center: >
+      ©2023, Jonathan Soma
+    right: 
+      - icon: github
+        href: https://github.com/jsoma
+      - icon: twitter 
+        href: https://twitter.com/dangerscarf
+      - icon: envelope
+        href: mailto:jonathan.soma@gmail.com
+format:
+  html:
+    template-partials:
+      - partials/title-block.html
+    callout-appearance: simple
+    # fontsize: 1.1em;
+    toc: false
+    toc-title: Table of contents
+    theme:
+      - cosmo
+      # - lumen
+      # - quartz
+      - custom.scss
+    css: static/style.css
+    number-sections: false
+    grid:
+      sidebar-width: 350px
+      body-width: 900px
+      margin-width: 250px

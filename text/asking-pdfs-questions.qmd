@@ -1,0 +1,34 @@
+---
+title: "Asking PDFs questions"
+order: 7
+custom-header: ../assets/pdfs.png
+---
+
+Asking PDFs questions actually isn't about text, it's about images! Except... it's kind of about text. And layout. And images. *It's complicated.*
+
+## Use cases
+
+When you're working with semi-structured documents, like PDFs of receipts or invoices, there are often individual fields you need to pull out: totals, dates, locations, etc.
+
+If you're looking to pull out things like names, places, or legal rulings from a larger body of text, I recommend converting the PDF to text and using [entity recognition](named-entity-recognition.qmd) instead.
+
+## Try it out
+
+[This example of DocQuery](https://huggingface.co/spaces/impira/docquery) is a great sample of asking a PDF a question. Be sure to click the examples!
+
+<script
+	type="module"
+	src="https://gradio.s3-us-west-2.amazonaws.com/3.1.7/gradio.js"
+></script>
+
+<gradio-app src="https://impira-docquery.hf.space"></gradio-app>
+
+## Models
+
+### Popular models
+
+LayoutLM is a common base, with [microsoft/layoutlmv3-base](https://huggingface.co/microsoft/layoutlmv3-base) being by far the most popular implementation. To get a look at a fine-tuned version, I might suggest [impira/layoutlm-invoices](https://huggingface.co/impira/layoutlm-invoices).
+
+### State of the art
+
+Asking PDFs questions falls under a few categories, but in this case we'll go with ["document layout analysis" on paperswithcode](https://paperswithcode.com/task/document-layout-analysis). There aren't very many benchmarks, but Microsoft's LayoutLMv3 is the top of at least one of them.

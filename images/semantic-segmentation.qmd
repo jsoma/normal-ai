@@ -1,0 +1,35 @@
+---
+title: "Semantic Segmentation: Finding stuff in photos"
+subtitle: "Which pixels belong to which objects?"
+order: 3
+custom-header: ../assets/semantic2.png
+---
+
+There are a handful of different ways that computers can look at images, and one of the options is "stuff" versus "things." Semantic segmentation can be used to find "stuff," the number of pixels dedicated to people, cars, vegetation, etc in an image.
+
+## Use cases
+
+Semantic segmentation is great at answering the question of "how much land is covered by XXX?" when using satellite imagery. In the example below, the model has been trained to search for vegetation.
+
+## Try it out
+
+[Here's a great example](https://huggingface.co/spaces/thiagohersan/maskformer-satellite-trees-gradio) that identifies vegetation. Scroll down to click the examples.
+
+<script
+	type="module"
+	src="https://gradio.s3-us-west-2.amazonaws.com/3.16.2/gradio.js"
+></script>
+
+<gradio-app src="https://thiagohersan-maskformer-satellite-trees-gradi-ba27a82.hf.space"></gradio-app>
+
+## VQA Models
+
+### Popular models
+
+On the Hugging Face models list, [semantic segmentation is called "image segmentation"](https://huggingface.co/models?pipeline_tag=image-segmentation&sort=downloads). The most popular models are [CLIPSeg](https://huggingface.co/CIDAS/clipseg-rd64-refined) or Facebook's [MaskFormer](https://huggingface.co/facebook/maskformer-swin-large-ade).
+
+### State of the art
+
+If you [poke around paperswithcode](https://paperswithcode.com/task/semantic-segmentation), accuracy really depends on the test you're working from. It's everything from around [60% on ADE20K val](https://paperswithcode.com/sota/semantic-segmentation-on-ade20k-val) to [almost 90% on Cityscapes](https://paperswithcode.com/sota/semantic-segmentation-on-cityscapes-val).
+
+The state of the art models appear to be InternImage-H and BEiT-3.

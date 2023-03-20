@@ -1,0 +1,57 @@
+[
+  {
+    "listing": "/diy/index.html",
+    "items": [
+      "/diy/text-classification.html",
+      "/diy/image-classification.html",
+      "/diy/custom.html",
+      "/diy/research.html"
+    ]
+  },
+  {
+    "listing": "/images/index.html",
+    "items": [
+      "/images/image-classification.html",
+      "/images/instance-segmentation.html",
+      "/images/semantic-segmentation.html",
+      "/images/vqa.html"
+    ]
+  },
+  {
+    "listing": "/audio/index.html",
+    "items": [
+      "/audio/transcription.html",
+      "/audio/removing-noise.html"
+    ]
+  },
+  {
+    "listing": "/existing-models.html",
+    "items": [
+      "/text/index.html",
+      "/text/text-classification.html",
+      "/text/named-entity-recognition.html",
+      "/text/asking-documents-questions.html",
+      "/text/document-similarity.html",
+      "/text/asking-pdfs-questions.html",
+      "/video/index.html",
+      "/audio/index.html",
+      "/audio/transcription.html",
+      "/audio/removing-noise.html",
+      "/images/index.html",
+      "/images/image-classification.html",
+      "/images/instance-segmentation.html",
+      "/images/semantic-segmentation.html",
+      "/images/vqa.html"
+    ]
+  },
+  {
+    "listing": "/text/index.html",
+    "items": [
+      "/text/text-classification.html",
+      "/text/named-entity-recognition.html",
+      "/text/asking-documents-questions.html",
+      "/text/document-similarity.html",
+      "/text/asking-pdfs-questions.html"
+    ]
+  }
+]

@@ -1,0 +1,41 @@
+---
+title: "Asking questions about documents"
+subtitle: "We have texts and we want answers"
+categories:
+- example
+- try out
+- text
+order: 3
+custom-header: ../assets/doc-qs.png
+---
+
+Question answering has a lot of sub-sections, but the idea in general is that you have a document and ask the model a question to be answered from it.
+
+Getting answers from documents isn't a fully-solved problem yet! Most of the issues deal with the length of the input – while getting answers from article-sized texts is pretty simple, larger documents are more difficult to extract answers from, and often need to be broken up into smaller pieces.
+
+## Use cases
+
+You might use question answering to extract specific information that you know is contained inside of documents, or get answers from an existing knowledge base. It's also one way to simplify text down into something useable.
+
+## Try it out
+
+[This Hugging Face space](https://huggingface.co/spaces/rajesh1729/question-answering-gradio) is a good example of document Q&A. Click the paragraph under "Examples" to see how it works.
+
+<script
+	type="module"
+	src="https://gradio.s3-us-west-2.amazonaws.com/3.20.1/gradio.js"
+></script>
+
+<gradio-app src="https://rajesh1729-question-answering-gradio.hf.space"></gradio-app>
+
+## Models
+
+### Popular models
+
+Most language models can do a decent job at answering questions from documents. You can find plenty under [Question Answering on Hugging Face](https://huggingface.co/models?pipeline_tag=question-answering&sort=downloads) (not to be confused with *document* question answering, which is more about structured PDFs like invoices).
+
+If you're doing something domain-specific, you might want to fine-tune your models. For example [LEGAL-ROBERTA](https://huggingface.co/saibo/legal-roberta-base) is specifically for legal documents.
+
+### State of the art
+
+[Question answers on Papers with Code](https://paperswithcode.com/task/question-answering) has most models inching up towards (or beyond) 80-90%. Most every large language model does a great job at this: PaLM, GlaM, LLaMA, etc. Most are available through APIs or specialized access, though, not as free and downloadable (...although LLaMA did get leaked and can absolutely be found, just not on HF).

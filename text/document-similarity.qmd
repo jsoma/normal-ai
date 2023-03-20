@@ -1,0 +1,25 @@
+---
+title: "Document similarity"
+subtitle: "And semantic searching"
+order: 5
+---
+
+Document similarity or sentence similarity can be used to find pieces of text that are related to one another. Through a bit of magic, each document is transformed into 384 dimensions, which can be used to find ones that are about the same topics. The dimensions don't mean anything, but you can [read more about word embeddings here](https://investigate.ai/text-analysis/word-embeddings/).
+
+## Use cases
+
+When searching across email dumps or pieces of legislation, document similarity can make it easy to find related texts. In some ways it's a simple alternative to training and using a classifier.
+
+The idea of searching for similar concepts or documents as opposed to specific phrases is called "semantic search."
+
+Modern document similarity models can even [match across languages](https://qz.com/1786896/ai-for-investigations-sorting-through-the-luanda-leaks)! If you search for "I am embezzling funds please don't tell anyone" in English, it can pull up documents in non-English languages.
+
+## Try it out
+
+Couldn't find a good example yet! For now you can use [this colab notebook](https://colab.research.google.com/github/jsoma/nicar23-huggingface/blob/master/notebooks/05-Document%20similarity.ipynb)
+
+## Models
+
+### Popular models
+
+You can use [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) for sentence similarity, but it only works with English (similarly, [shibing624/text2vec-base-chinese](https://huggingface.co/shibing624/text2vec-base-chinese) only works with Chinese). If you scroll around on the [sentence similarity page](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads) you'll eventually find a [sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2), a multi-lingual model
