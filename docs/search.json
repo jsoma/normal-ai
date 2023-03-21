@@ -189,6 +189,34 @@
     "text": "Try it out\nIn the intro to fine-tuning we build a detector for illegal amber mines. Click the examples below to see how it performs (although let’s be honest: right now I’m cheating by giving it images it’s already seen)."
   },
   {
+    "objectID": "images/image-description.html",
+    "href": "images/image-description.html",
+    "title": "Image description",
+    "section": "",
+    "text": "There are a handful of different ways that computers can look at images, and one of the options is “stuff” versus “things.” Instance segmentation can be used to find “things:” each individual person, car, tree, etc in an image."
+  },
+  {
+    "objectID": "images/image-description.html#use-cases",
+    "href": "images/image-description.html#use-cases",
+    "title": "Image description",
+    "section": "Use cases",
+    "text": "Use cases\nHonestly, the most common use of image description models these days is probably creating prompt ideas to feed into image generation models! You can also use it for finding similar images.\nAside from just describing an image, these models can also perform zero-shot image classification, which means they can put images into categories without having explicitly seen the categories before. I can show it a picture and say, “are they playing sports or playing music?” and because it knows generally what sports look like and and music looks like, it can apply those skills to a classification job that I’d otherwise have to fine-tune a model for."
+  },
+  {
+    "objectID": "images/image-description.html#try-it-out",
+    "href": "images/image-description.html#try-it-out",
+    "title": "Image description",
+    "section": "Try it out",
+    "text": "Try it out\n\nImage description\nThis example is used to help think of prompts for image generation tools like Stable Diffusion.\n\n\n\n\nZero-shot image classification (Chinese!)\nWhile CLIP is based on English, you can also find models that are not based on English, like this Chinese example. But note that if you change the labels - Candidate Labels 候选分类标签 - to be in English, it still gives you the right answers!"
+  },
+  {
+    "objectID": "images/image-description.html#models",
+    "href": "images/image-description.html#models",
+    "title": "Image description",
+    "section": "Models",
+    "text": "Models\n\nPopular models\nYou’re you’re definitely using CLIP for this!"
+  },
+  {
     "objectID": "images/vqa.html",
     "href": "images/vqa.html",
     "title": "VQA: Asking questions about pictures",
@@ -305,14 +333,14 @@
     "href": "existing-models.html#text-based-models",
     "title": "Using existing models",
     "section": "Text-based models",
-    "text": "Text-based models\nText-based models can classify and extract information out of documents.\n\n\n\n\n\n\n\n\nText models overview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nText classification\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDetecting people, places, things and more\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsking questions about documents\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDocument similarity\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsking PDFs questions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Text-based models\nText-based models can classify and extract information out of documents.\n\n\n\n\n\n\n\n\nText models overview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nText classification\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDetecting people, places, things and more\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSummarization\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsking questions about documents\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDocument similarity\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsking PDFs questions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "existing-models.html#image-based-models",
     "href": "existing-models.html#image-based-models",
     "title": "Using existing models",
     "section": "Image-based models",
-    "text": "Image-based models\nImage-based models can analyze objects that appear in photographs and satellite imagery.\n\n\n\n\n\n\n\n\nImage models overview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImage classification\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nObject Detection: Finding things in photos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSemantic Segmentation: Finding stuff in photos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVQA: Asking questions about pictures\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Image-based models\nImage-based models can analyze objects that appear in photographs and satellite imagery.\n\n\n\n\n\n\n\n\nImage models overview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImage classification\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nObject Detection: Finding things in photos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSemantic Segmentation: Finding stuff in photos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVQA: Asking questions about pictures\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImage description\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "existing-models.html#audio-models",
@@ -355,6 +383,20 @@
     "title": "Asking questions about documents",
     "section": "Models",
     "text": "Models\n\nPopular models\nMost language models can do a decent job at answering questions from documents. You can find plenty under Question Answering on Hugging Face (not to be confused with document question answering, which is more about structured PDFs like invoices).\nIf you’re doing something domain-specific, you might want to fine-tune your models. For example LEGAL-ROBERTA is specifically for legal documents.\n\n\nState of the art\nQuestion answers on Papers with Code has most models inching up towards (or beyond) 80-90%. Most every large language model does a great job at this: PaLM, GlaM, LLaMA, etc. Most are available through APIs or specialized access, though, not as free and downloadable (…although LLaMA did get leaked and can absolutely be found, just not on HF)."
+  },
+  {
+    "objectID": "text/summarization.html#use-cases",
+    "href": "text/summarization.html#use-cases",
+    "title": "Summarization",
+    "section": "Use cases",
+    "text": "Use cases\nWhen you want to summarize something, clearly!\nAn excellent other use case is sending context to tools like ChatGPT to get answers from. These tools have limited amounts of text they can read, so you can’t say “here’s a whole book, do my homework.” What you can do is summarize each chapter of the book, send it to ChatGPT and say “here are the chapter summaries, do my homework” (or maybe, “what chapter do I need to read?” and then send it that chapter)."
+  },
+  {
+    "objectID": "text/summarization.html#models",
+    "href": "text/summarization.html#models",
+    "title": "Summarization",
+    "section": "Models",
+    "text": "Models\n\nPopular models\n\n\nState of the art\nThere are so many aspects to text summarization!\n\nText summarization\nAbstracive summarization\nExtractive summarization\nMulti-document summarization\n\nAlthough from selecting GigaWord at random, Pegasus and BART seem to be pretty good options."
   },
   {
     "objectID": "text/document-similarity.html",
@@ -403,7 +445,7 @@
     "href": "text/named-entity-recognition.html#try-it-out",
     "title": "Detecting people, places, things and more",
     "section": "Try it out",
-    "text": "Try it out"
+    "text": "Try it out\nExample from here. Click “Submit” or test with your own text!"
   },
   {
     "objectID": "text/named-entity-recognition.html#models",

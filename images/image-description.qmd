@@ -1,0 +1,50 @@
+---
+title: "Image description"
+subtitle: "What are we looking at?"
+order: 6
+custom-header: ../assets/image-description.png
+---
+
+<div style="display: none;">
+
+![](../assets/image-description.png)
+
+</div>
+
+There are a handful of different ways that computers can look at images, and one of the options is "stuff" versus "things." Instance segmentation can be used to find "things:" each individual person, car, tree, etc in an image.
+
+## Use cases
+
+Honestly, the most common use of image description models these days is probably creating prompt ideas to feed into image generation models! You can also use it for finding similar images.
+
+Aside from just describing an image, these models can also perform *zero-shot image classification*, which means they can put images into categories without having explicitly seen the categories before. I can show it a picture and say, "are they playing sports or playing music?" and because it knows *generally* what sports look like and and music looks like, it can apply those skills to a classification job that I'd otherwise [have to fine-tune a model for](../intro/fine-tune-model.qmd).
+
+## Try it out
+
+### Image description
+
+[This example](https://huggingface.co/spaces/pharma/CLIP-Interrogator) is used to help think of prompts for image generation tools like [Stable Diffusion](https://huggingface.co/spaces/stabilityai/stable-diffusion).
+
+<iframe
+	src="https://pharma-clip-interrogator.hf.space"
+	frameborder="0"
+	width="850"
+	height="450"
+></iframe>
+
+### Zero-shot image classification (Chinese!)
+
+While CLIP is based on English, you can also find models that are [not based on English](https://huggingface.co/OFA-Sys/chinese-clip-vit-base-patch16), like [this Chinese example](https://huggingface.co/spaces/OFA-Sys/chinese-clip-zero-shot-image-classification). But note that if you change the labels - Candidate Labels 候选分类标签 - to be in English, it still gives you the right answers!
+
+<script
+	type="module"
+	src="https://gradio.s3-us-west-2.amazonaws.com/3.11.0/gradio.js"
+></script>
+
+<gradio-app src="https://ofa-sys-chinese-clip-zero-shot-image-cla-bcd0d20.hf.space"></gradio-app>
+
+## Models
+
+### Popular models
+
+You're you're definitely using [CLIP](openai/clip-vit-large-patch14) for this!

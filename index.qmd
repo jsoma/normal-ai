@@ -19,6 +19,14 @@ This site is an attempt at a down-to-earth explanation of modern AI and machine 
 Unfortunately "what's possible" is a moving target, so take this all as being ever-so-slightly out of date.
 :::
 
+### Where to start?
+
+If you're looking for more background on ML and AI, I strongly recommend heading into [What is a model?](intro/models.qmd).
+
+If you'd like to see how to simply and easily build a custom image classifier, explore [Training a model](intro/fine-tune-model.qmd). If you have no idea what an image classifier even *does*, you can [learn about that here](images/image-classification.qmd).
+
+And if you're just here to explore? Try looking at [what can be done with text](text/index.qmd), or [the possibilities of image analysis](images/index.qmd)!
+
 ## Frequently Asked Questions
 
 ### What is the difference between machine learning and AI?

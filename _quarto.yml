@@ -5,6 +5,7 @@ execute:
   freeze: auto
 resources:
   - CNAME
+  - assets/*
 website:
   google-analytics: "G-T8MPS78ZR0"
   title: "Normal AI"
@@ -78,6 +79,8 @@ website:
             file: images/instance-segmentation.qmd
           - text: "Measuring amounts"
             file: images/semantic-segmentation.qmd
+          - text: "Describing images"
+            file: images/image-description.qmd
         - section: "🔊 Audio"
           contents:
           - audio/index.qmd

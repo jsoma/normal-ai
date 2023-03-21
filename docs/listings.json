@@ -14,7 +14,8 @@
       "/images/image-classification.html",
       "/images/instance-segmentation.html",
       "/images/semantic-segmentation.html",
-      "/images/vqa.html"
+      "/images/vqa.html",
+      "/images/image-description.html"
     ]
   },
   {
@@ -30,6 +31,7 @@
       "/text/index.html",
       "/text/text-classification.html",
       "/text/named-entity-recognition.html",
+      "/text/summarization.html",
       "/text/asking-documents-questions.html",
       "/text/document-similarity.html",
       "/text/asking-pdfs-questions.html",
@@ -41,7 +43,8 @@
       "/images/image-classification.html",
       "/images/instance-segmentation.html",
       "/images/semantic-segmentation.html",
-      "/images/vqa.html"
+      "/images/vqa.html",
+      "/images/image-description.html"
     ]
   },
   {
@@ -49,6 +52,7 @@
     "items": [
       "/text/text-classification.html",
       "/text/named-entity-recognition.html",
+      "/text/summarization.html",
       "/text/asking-documents-questions.html",
       "/text/document-similarity.html",
       "/text/asking-pdfs-questions.html"

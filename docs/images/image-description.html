@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Normal AI - Extending and customizing overview</title>
+<title>Normal AI - Image description</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,10 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../diy/text-classification.html" rel="next">
-<link href="../video/index.html" rel="prev">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<link href="../audio/index.html" rel="next">
+<link href="../images/semantic-segmentation.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -62,35 +60,6 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-T8MPS78ZR0"></script>
 
 <script type="text/javascript">
@@ -101,17 +70,15 @@ gtag('js', new Date());
 gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../static/style.css">
-<meta property="og:title" content="Normal AI - Extending and customizing overview">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://normalai.org/diy/assets/conveyor.png">
+<meta property="og:title" content="Normal AI - Image description">
+<meta property="og:description" content="What are we looking at?">
+<meta property="og:image" content="https://normalai.org/images/assets/conveyor.png">
 <meta property="og:site-name" content="Normal AI">
-<meta name="twitter:title" content="Normal AI - Extending and customizing overview">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://normalai.org/diy/assets/conveyor.png">
+<meta name="twitter:title" content="Normal AI - Image description">
+<meta name="twitter:description" content="What are we looking at?">
+<meta name="twitter:image" content="https://normalai.org/images/assets/conveyor.png">
 <meta name="twitter:creator" content="@dangerscarf">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -168,7 +135,7 @@ gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../diy/index.html">Build your own</a></li><li class="breadcrumb-item"><a href="../diy/index.html">Customization overview</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../existing-models.html">Existing models</a></li><li class="breadcrumb-item"><a href="../images/index.html">Image models overview</a></li><li class="breadcrumb-item"><a href="../images/image-description.html">Describing images</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -279,13 +246,13 @@ gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
  <span class="menu-text">🖼️ Images</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../images/index.html" class="sidebar-item-text sidebar-link">
@@ -318,7 +285,7 @@ gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../images/image-description.html" class="sidebar-item-text sidebar-link">
+  <a href="../images/image-description.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Describing images</span></a>
   </div>
 </li>
@@ -383,7 +350,7 @@ gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../diy/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../diy/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Customization overview</span></a>
   </div>
 </li>
@@ -423,10 +390,14 @@ gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
 <main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
+        <div class="page-columns" style="background-image: url(../assets/image-description.png); background-position: center; background-size: cover; grid-column: body-start/screen-end; height: 40vh;">
+        <img src="../assets/image-description.png" style="display: none;">
+    </div>
     
     <div class="quarto-title-banner page-columns page-full">
       <div class="quarto-title column-body">
-        <h1 class="title">Extending and customizing overview</h1>
+        <h1 class="title">Image description</h1>
+                <p class="subtitle lead">What are we looking at?</p>
                               </div>
     </div>
       
@@ -442,101 +413,41 @@ gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
     </header>
   
 
-<section id="coming-soon" class="level2">
-<h2 class="anchored" data-anchor-id="coming-soon">Coming soon!</h2>
-<p>Let’s be honest, I got lazy.</p>
-
+<div style="display: none;">
+<p><img src="../assets/image-description.png" class="quarto-discovered-preview-image img-fluid"></p>
+</div>
+<p>There are a handful of different ways that computers can look at images, and one of the options is “stuff” versus “things.” Instance segmentation can be used to find “things:” each individual person, car, tree, etc in an image.</p>
+<section id="use-cases" class="level2">
+<h2 class="anchored" data-anchor-id="use-cases">Use cases</h2>
+<p>Honestly, the most common use of image description models these days is probably creating prompt ideas to feed into image generation models! You can also use it for finding similar images.</p>
+<p>Aside from just describing an image, these models can also perform <em>zero-shot image classification</em>, which means they can put images into categories without having explicitly seen the categories before. I can show it a picture and say, “are they playing sports or playing music?” and because it knows <em>generally</em> what sports look like and and music looks like, it can apply those skills to a classification job that I’d otherwise <a href="../intro/fine-tune-model.html">have to fine-tune a model for</a>.</p>
+</section>
+<section id="try-it-out" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-out">Try it out</h2>
+<section id="image-description" class="level3">
+<h3 class="anchored" data-anchor-id="image-description">Image description</h3>
+<p><a href="https://huggingface.co/spaces/pharma/CLIP-Interrogator">This example</a> is used to help think of prompts for image generation tools like <a href="https://huggingface.co/spaces/stabilityai/stable-diffusion">Stable Diffusion</a>.</p>
+<iframe src="https://pharma-clip-interrogator.hf.space" frameborder="0" width="850" height="450">
+</iframe>
+</section>
+<section id="zero-shot-image-classification-chinese" class="level3">
+<h3 class="anchored" data-anchor-id="zero-shot-image-classification-chinese">Zero-shot image classification (Chinese!)</h3>
+<p>While CLIP is based on English, you can also find models that are <a href="https://huggingface.co/OFA-Sys/chinese-clip-vit-base-patch16">not based on English</a>, like <a href="https://huggingface.co/spaces/OFA-Sys/chinese-clip-zero-shot-image-classification">this Chinese example</a>. But note that if you change the labels - Candidate Labels 候选分类标签 - to be in English, it still gives you the right answers!</p>
+<script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/3.11.0/gradio.js"></script>
+<p><gradio-app src="https://ofa-sys-chinese-clip-zero-shot-image-cla-bcd0d20.hf.space"></gradio-app></p>
+</section>
+</section>
+<section id="models" class="level2">
+<h2 class="anchored" data-anchor-id="models">Models</h2>
+<section id="popular-models" class="level3">
+<h3 class="anchored" data-anchor-id="popular-models">Popular models</h3>
+<p>You’re you’re definitely using <a href="openai/clip-vit-large-patch14">CLIP</a> for this!</p>
 
 
 </section>
+</section>
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-2">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1678991713023" data-listing-reading-time-sort="1">
-<a href="../diy/text-classification.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left borderless">
-<div class="listing-item-img-placeholder" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Build your own text classifier
-</h5>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1678991722854" data-listing-reading-time-sort="1">
-<a href="../diy/image-classification.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left borderless">
-<div class="listing-item-img-placeholder" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Build your own image classifier
-</h5>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1678991734779" data-listing-reading-time-sort="1">
-<a href="../diy/custom.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left borderless">
-<div class="listing-item-img-placeholder" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Custom models
-</h5>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1678991753951" data-listing-reading-time-sort="1">
-<a href="../diy/research.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left borderless">
-<div class="listing-item-img-placeholder" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Researching new tools
-</h5>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -772,13 +683,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../video/index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Video models overview</span>
+      <a href="../images/semantic-segmentation.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Measuring amounts</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../diy/text-classification.html" class="pagination-link">
-        <span class="nav-page-text">Text classifier</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../audio/index.html" class="pagination-link">
+        <span class="nav-page-text">Audio models overview</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -786,7 +697,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">Find me at <a href="mailto:jonathan.soma@gmail.com">jonathan.soma@gmail.com</a> or <a href="https://twitter.com/dangerscarf"><span class="citation" data-cites="dangerscarf">@dangerscarf</span></a></div>   
-    <div class="nav-footer-center">©2023, Jonathan Soma<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jsoma/normal-ai/edit/main/diy/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jsoma/normal-ai/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-center">©2023, Jonathan Soma<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jsoma/normal-ai/edit/main/images/image-description.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jsoma/normal-ai/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

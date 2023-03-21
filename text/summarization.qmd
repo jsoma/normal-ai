@@ -1,0 +1,33 @@
+---
+title: "Summarization"
+subtitle: "Taking long texts and making them short"
+order: 2
+custom-header: ../assets/animals.png
+---
+
+<div style="display: none;">
+
+![](../assets/animals.png)
+
+</div>
+
+## Use cases
+
+When you want to summarize something, clearly!
+
+An excellent *other* use case is sending context to tools like ChatGPT to get answers from. These tools have limited amounts of text they can read, so you can't say "here's a whole book, do my homework." What you *can* do is summarize each chapter of the book, send it to ChatGPT and say "here are the chapter summaries, do my homework" (or maybe, "what chapter do I need to read?" and then send it that chapter).
+
+## Models
+
+### Popular models
+
+### State of the art
+
+There are so many aspects to text summarization!
+
+* [Text summarization](https://paperswithcode.com/task/text-summarization)
+* [Abstracive summarization](https://paperswithcode.com/task/abstractive-text-summarization)
+* [Extractive summarization](https://paperswithcode.com/task/extractive-document-summarization)
+* [Multi-document summarization](https://paperswithcode.com/task/multi-document-summarization)
+
+Although from selecting [GigaWord](https://paperswithcode.com/sota/text-summarization-on-gigaword) at random, Pegasus and [BART](https://huggingface.co/facebook/bart-large-cnn) seem to be pretty good options.

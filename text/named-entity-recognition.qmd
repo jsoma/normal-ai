@@ -12,6 +12,8 @@ NER could be used to pull out the names of everyone mentioned in an email thread
 
 ## Try it out
 
+[Example from here](https://huggingface.co/spaces/pie/NER). Click "Submit" or test with your own text!
+
 <iframe
 	src="https://pie-ner.hf.space"
 	frameborder="0"
