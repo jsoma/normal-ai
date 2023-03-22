@@ -312,7 +312,7 @@
     "href": "audio/transcription.html#try-it-out",
     "title": "Transcription",
     "section": "Try it out",
-    "text": "Try it out"
+    "text": "Try it out\nHere we will try using the large version of the Whisper model, which should give excellent results over many languages."
   },
   {
     "objectID": "audio/transcription.html#models",

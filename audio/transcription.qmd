@@ -19,12 +19,15 @@ If speech can be accurately converted into text, everything we can do with text 
 
 ## Try it out
 
-<script
-	type="module"
-	src="https://gradio.s3-us-west-2.amazonaws.com/3.9.1/gradio.js"
-></script>
+Here we will try using the [large version of the Whisper model](https://huggingface.co/spaces/sanchit-gandhi/whisper-large-v2), which should give excellent results over many languages.
 
-<gradio-app src="https://osanseviero-whisper-medium.hf.space"></gradio-app>
+<iframe
+	src="https://sanchit-gandhi-whisper-large-v2.hf.space"
+	frameborder="0"
+	width="850"
+	height="950"
+	allow="microphone"
+></iframe>
 
 ## Models
 
