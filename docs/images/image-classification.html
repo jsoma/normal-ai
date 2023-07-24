@@ -470,32 +470,56 @@ gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
 </section>
 <section id="python-code" class="level2">
 <h2 class="anchored" data-anchor-id="python-code">Python code</h2>
-<p>In this example we’re going to use <strong>zero-shot image classification</strong> to see whether a painting is of a woman or a man. It’s called “zero-shot” because we aren’t customizing a model specifically for the task, but relying on the <a href="https://huggingface.co/openai/clip-vit-large-patch14">base model</a> to know the difference between the two.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<p>In this example we’re going to use <strong>zero-shot image classification</strong> to see whether a painting is of a woman or a man. It’s called “zero-shot” because we aren’t customizing a model specifically for the task, but relying on a <a href="https://huggingface.co/openai/clip-vit-large-patch14">pre-trained vision model</a> to know the difference between the two.</p>
+<p>We’ll start with our imports and pulling in the model.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> CLIPProcessor, CLIPModel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>…then use (more or less) the example right from <a href="https://huggingface.co/openai/clip-vit-large-patch14">the documentation</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://i.etsystatic.com/5554021/r/il/31ad32/644701138/il_1588xN.644701138_6gh4.jpg"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> CLIPProcessor, CLIPModel</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Using https://huggingface.co/openai/clip-vit-large-patch14</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> CLIPModel.from_pretrained(<span class="st">"openai/clip-vit-large-patch14"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>processor <span class="op">=</span> CLIPProcessor.from_pretrained(<span class="st">"openai/clip-vit-large-patch14"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then we read in an image from the internet and define the two choices that we’re going to be allowing the model to select between.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://i.etsystatic.com/5554021/r/il/31ad32/644701138/il_1588xN.644701138_6gh4.jpg"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>choices <span class="op">=</span> [<span class="st">"a painting of a woman"</span>, <span class="st">"a painting of a man"</span>]</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> processor(text<span class="op">=</span>choices, images<span class="op">=</span>image, return_tensors<span class="op">=</span><span class="st">"pt"</span>, padding<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> model(<span class="op">**</span>inputs)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>logits_per_image <span class="op">=</span> outputs.logits_per_image <span class="co"># this is the image-text similarity score</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> logits_per_image.softmax(dim<span class="op">=</span><span class="dv">1</span>) <span class="co"># we can take the softmax to get the label probabilities</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Probabilities for each potential class</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># We use [0] because we only passed one image</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>prediction_probs <span class="op">=</span> probs.tolist()[<span class="dv">0</span>]</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prediction_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We’re given two probabilities, in order matching the classes we offered. Below we use <code>np.argmax</code> to figure out what the higher index is (<code>0</code> or <code>1</code>) and then display that choice.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which class?</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> np.argmax(prediction_probs)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(choices[prediction])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This is <em>not</em> a fantastic prompt: what about groups? What about paintings of vegetables? But it’s a start – you aren’t restricted to two choices, you’re welcome to add as many as you’d like.</p>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>choices <span class="op">=</span> [<span class="st">"a painting of a woman"</span>, <span class="st">"a painting of a man"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, we (roughly) just use the rest of the example from <a href="https://huggingface.co/openai/clip-vit-large-patch14">the documentation</a>. Those model pages are a <em>delight</em> when their code works right out of the box.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> processor(text<span class="op">=</span>choices, images<span class="op">=</span>image, return_tensors<span class="op">=</span><span class="st">"pt"</span>, padding<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> model(<span class="op">**</span>inputs)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>logits_per_image <span class="op">=</span> outputs.logits_per_image <span class="co"># this is the image-text similarity score</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> logits_per_image.softmax(dim<span class="op">=</span><span class="dv">1</span>) <span class="co"># we can take the softmax to get the label probabilities</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Probabilities for each potential class</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># We use [0] because we only passed one image</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>prediction_probs <span class="op">=</span> probs.tolist()[<span class="dv">0</span>]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>prediction_probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>[0.9841192364692688, 0.015880735591053963]</code></pre>
+</div>
+</div>
+<p>We’re given two probabilities, in order matching the classes we offered.</p>
+<p>Below we use <code>np.argmax</code> to figure out what the higher index is (<code>0</code> or <code>1</code>) and then display that choice.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which class?</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> np.argmax(prediction_probs)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>choices[prediction]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>'a painting of a woman'</code></pre>
+</div>
+</div>
+<p>This is <em>not</em> a fantastic prompt: what about groups? What about paintings of vegetables? But it’s a start!</p>
+<div class="callout-info">
+<p>You aren’t restricted to two choices, you’re welcome to add as many as you’d like.</p>
+</div>
 
 
 </section>

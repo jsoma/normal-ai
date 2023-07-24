@@ -39,23 +39,35 @@ In the [intro to fine-tuning](../intro/fine-tune-model.qmd) we build a [detector
 
 ## Python code
 
-In this example we're going to use **zero-shot image classification** to see whether a painting is of a woman or a man. It's called "zero-shot" because we aren't customizing a model specifically for the task, but relying on the [base model](https://huggingface.co/openai/clip-vit-large-patch14) to know the difference between the two.
+In this example we're going to use **zero-shot image classification** to see whether a painting is of a woman or a man. It's called "zero-shot" because we aren't customizing a model specifically for the task, but relying on a [pre-trained vision model](https://huggingface.co/openai/clip-vit-large-patch14) to know the difference between the two.
 
-```python
+We'll start with our imports and pulling in the model.
+
+```{python}
+#| output: false
 from PIL import Image
 import requests
 import numpy as np
 
 from transformers import CLIPProcessor, CLIPModel
+
+# Using https://huggingface.co/openai/clip-vit-large-patch14
+model = CLIPModel.from_pretrained("openai/clip-vit-large-patch14")
+processor = CLIPProcessor.from_pretrained("openai/clip-vit-large-patch14")
 ```
 
-...then use (more or less) the example right from [the documentation](https://huggingface.co/openai/clip-vit-large-patch14):
+Then we read in an image from the internet and define the two choices that we're going to be allowing the model to select between.
 
-```python
+```{python}
 url = "https://i.etsystatic.com/5554021/r/il/31ad32/644701138/il_1588xN.644701138_6gh4.jpg"
 image = Image.open(requests.get(url, stream=True).raw)
 
 choices = ["a painting of a woman", "a painting of a man"]
+```
+
+Finally, we (roughly) just use the rest of the example from [the documentation](https://huggingface.co/openai/clip-vit-large-patch14). Those model pages are a *delight* when their code works right out of the box.
+
+```{python}
 inputs = processor(text=choices, images=image, return_tensors="pt", padding=True)
 outputs = model(**inputs)
 
@@ -65,15 +77,23 @@ probs = logits_per_image.softmax(dim=1) # we can take the softmax to get the lab
 # Probabilities for each potential class
 # We use [0] because we only passed one image
 prediction_probs = probs.tolist()[0]
-print(prediction_probs)
+prediction_probs
 ```
 
-We're given two probabilities, in order matching the classes we offered. Below we use `np.argmax` to figure out what the higher index is (`0` or `1`) and then display that choice.
+We're given two probabilities, in order matching the classes we offered.
 
-```python
+Below we use `np.argmax` to figure out what the higher index is (`0` or `1`) and then display that choice.
+
+```{python}
 # Which class?
 prediction = np.argmax(prediction_probs)
-print(choices[prediction])
+choices[prediction]
 ```
 
-This is *not* a fantastic prompt: what about groups? What about paintings of vegetables? But it's a start – you aren't restricted to two choices, you're welcome to add as many as you'd like.
+This is *not* a fantastic prompt: what about groups? What about paintings of vegetables? But it's a start!
+
+::: {.callout-info}
+
+You aren't restricted to two choices, you're welcome to add as many as you'd like.
+
+:::
