@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.272">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -57,7 +57,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-T8MPS78ZR0"></script>
@@ -505,8 +506,8 @@ gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
 <p>With a collection of satellite imagery, we need to find pictures like those below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/amber/example.png" class="quarto-discovered-preview-image img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Example of amber mines</figcaption><p></p>
+<p><img src="../assets/amber/example.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Example of amber mines</figcaption>
 </figure>
 </div>
 <p>See those little round things? <strong>Those are illegal amber mines.</strong> While we could spend nights and weekends scrolling through image after image looking for those little round bits, a computer is going to do a much better job of it. Specifically speaking, a <em>fine-tuned computer vision model</em> is going to do a better job of it.</p>
@@ -532,14 +533,14 @@ gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/amber/new-project-click.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Create a new project</figcaption><p></p>
+<figcaption class="figure-caption">Create a new project</figcaption>
 </figure>
 </div>
 <p>Create a new project, selecting <strong>Image Classification</strong> since we’re attempting to put images into categories. If we were attempting to classify tweets, we’d click <strong>Text</strong> and then one of the <strong>Text Classification</strong> options.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/amber/new-project-fill.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Enter in the details</figcaption><p></p>
+<figcaption class="figure-caption">Enter in the details</figcaption>
 </figure>
 </div>
 <p>An important part of this screen is the <strong>Model choice</strong> option. Do you know anything about the different models we could fine-tune for this project? Are those “XGBoost” and “ResNet” things mentioned above by Texty relavant? Does RoBERTa from the last section speak images?</p>
@@ -551,20 +552,20 @@ gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/amber/upload-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Upload your images</figcaption><p></p>
+<figcaption class="figure-caption">Upload your images</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/amber/upload-2.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Done uploading</figcaption><p></p>
+<figcaption class="figure-caption">Done uploading</figcaption>
 </figure>
 </div>
 <p>That’s your data prep! Once it’s done uploading you can click the <strong>go to trainings</strong> button.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/amber/go-to-training.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Go to training</figcaption><p></p>
+<figcaption class="figure-caption">Go to training</figcaption>
 </figure>
 </div>
 </section>
@@ -578,14 +579,14 @@ gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/amber/press-train.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Models finished fine-tuning</figcaption><p></p>
+<figcaption class="figure-caption">Models finished fine-tuning</figcaption>
 </figure>
 </div>
 <p>Wait a bit – have fun watching the models compete – and soon you’ll have five fine-tuned models all ready for you.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/amber/models-done-training.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Models finished fine-tuning</figcaption><p></p>
+<figcaption class="figure-caption">Models finished fine-tuning</figcaption>
 </figure>
 </div>
 </section>
@@ -595,7 +596,7 @@ gtag('config', 'G-T8MPS78ZR0', { 'anonymize_ip': true});
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/amber/model-page.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Model performance</figcaption><p></p>
+<figcaption class="figure-caption">Model performance</figcaption>
 </figure>
 </div>
 <p>I’m going to give you the numbers for a few of the models below:</p>
